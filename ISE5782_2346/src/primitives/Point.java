@@ -45,7 +45,8 @@ public class Point {
         return "Point" +_xyz;
     }
 
-    public double distanceSquared(Point other) {
+    public double distanceSquared(Point other)
+    {
         return (this._xyz.d1 - other._xyz.d1) * (this._xyz.d1 - other._xyz.d1) +
                 (this._xyz.d2 - other._xyz.d2) * (this._xyz.d2 - other._xyz.d2) +
                 (this._xyz.d3 - other._xyz.d2) * (this._xyz.d3 - other._xyz.d2);

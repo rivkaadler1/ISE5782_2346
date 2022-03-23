@@ -18,7 +18,7 @@ public class Double3 {
 	/**
 	 * Zero triad (0,0,0)
 	 */
-	static final Double3 ZERO = new Double3(0, 0, 0);
+	public static final Double3 ZERO = new Double3(0, 0, 0);
 
 	/**
 	 * Constructor to initialize Double3 based object with its three number values
@@ -27,7 +27,7 @@ public class Double3 {
 	 * @param d2 second number value
 	 * @param d3 third number value
 	 */
-	protected Double3(double d1, double d2, double d3) {
+	public Double3(double d1, double d2, double d3) {
 		this.d1 = d1;
 		this.d2 = d2;
 		this.d3 = d3;
@@ -62,7 +62,8 @@ public class Double3 {
 	 * @param rhs right handle side operand for addition
 	 * @return result of add
 	 */
-	Double3 add(Double3 rhs) {
+	public Double3 add(Double3 rhs) 
+	{
 		return new Double3(d1 + rhs.d1, d2 + rhs.d2, d3 + rhs.d3);
 	}
 
@@ -73,7 +74,7 @@ public class Double3 {
 	 * @param rhs right handle side operand for addition
 	 * @return result of add
 	 */
-	Double3 subtract(Double3 rhs) {
+	public Double3 subtract(Double3 rhs) {
 		return new Double3(d1 - rhs.d1, d2 - rhs.d2, d3 - rhs.d3);
 	}
 

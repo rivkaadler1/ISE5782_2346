@@ -3,7 +3,8 @@ package geometries;
 import primitives.Point;
 import primitives.Vector;
 
-public class Plane implements Geometry{
+public class Plane implements Geometry
+{
     final Point _p0;
     final Vector normal;
 
@@ -35,7 +36,8 @@ public class Plane implements Geometry{
      * getter for p0
      * @return p0
      */
-    public Point getP0() {
+    public Point getP0() 
+    {
         return _p0;
     }
 
@@ -43,7 +45,8 @@ public class Plane implements Geometry{
      * getter for the normal
      * @return the normal
      */
-    public Vector getNormal() {
+    public Vector getNormal()
+    {
         return normal;
     }
 
@@ -55,8 +58,7 @@ public class Plane implements Geometry{
 	@Override
 	public Vector getNormal(Point p)
 	{
-		//return normal;
-		return null;
+		return normal;		
 	}
     
     
