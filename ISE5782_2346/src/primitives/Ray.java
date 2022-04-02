@@ -3,7 +3,8 @@ package primitives;
 import java.util.Objects;
 
 
-public class Ray {
+public class Ray 
+{
     final Point p0;
     final Vector dir;
 
@@ -11,7 +12,8 @@ public class Ray {
      * get the point of the ray
      * @return point
      */
-    public Point getP0() {
+    public Point getP0() 
+    {
         return p0;
     }
 
@@ -19,7 +21,8 @@ public class Ray {
      * get the direction of the ray
      * @return direction vector
      */
-    public Vector getDir() {
+    public Vector getDir() 
+    {
         return dir;
     }
 
@@ -28,7 +31,8 @@ public class Ray {
      * @param p0 object of type Point
      * @param dir direction - object of type Vector
      */
-    public Ray(Point p0, Vector dir) {
+    public Ray(Point p0, Vector dir) 
+    {
         if(!(dir.length() == 1))
             this.dir = dir.normalize();
         else this.dir = dir;
@@ -36,11 +40,12 @@ public class Ray {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        if (!(o instanceof Ray)) return false;
-        Ray other = (Ray)o;
+    public boolean equals(Object obj) 
+    {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (!(obj instanceof Ray)) return false;
+        Ray other = (Ray)obj;
         return this.dir.equals(other.dir) && this.p0.equals(other.p0);
     }
 
@@ -50,14 +55,20 @@ public class Ray {
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Ray{" +
                 "p0=" + p0 +
                 ", dir=" + dir +
                 '}';
     }
-
-	public Point getPoint(int i) {
+    /**
+     * this function isn't requried in exercise 1 and maybe not required at all
+     * @param i
+     * @return point
+     */
+	public Point getPoint(int i) 
+	{
 		return p0.add(dir.scale(i));
 	}
 

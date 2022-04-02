@@ -11,7 +11,8 @@ import static primitives.Util.*;
  * 
  * @author Dan
  */
-public class Polygon implements Geometry {
+public class Polygon implements Geometry 
+{
 	/**
 	 * List of polygon's vertices
 	 */
@@ -43,7 +44,8 @@ public class Polygon implements Geometry {
 	 *                                  <li>The polygon is concave (not convex)</li>
 	 *                                  </ul>
 	 */
-	public Polygon(Point... vertices) {
+	public Polygon(Point... vertices)
+	{
 		if (vertices.length < 3)
 			throw new IllegalArgumentException("A polygon can't have less than 3 vertices");
 		this.vertices = List.of(vertices);
@@ -85,7 +87,8 @@ public class Polygon implements Geometry {
 	}
 
 	@Override
-	public Vector getNormal(Point point) {
+	public Vector getNormal(Point point) 
+	{
 		return plane.getNormal();
 	}
 }

@@ -20,10 +20,10 @@ import primitives.Point;
 class SphereTests {
 
 	/**
-	 * Test method for {@link geometries.Sphere#getP0()}.
+	 * Test method for {@link geometries.Sphere#getCenter()}.
 	 */
 	/*@Test
-	void testGetP0() 
+	void testGetCenter() 
 	{
 		
 	}*/

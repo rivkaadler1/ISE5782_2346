@@ -3,7 +3,8 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
-public class Tube implements Geometry {
+public class Tube implements Geometry 
+{
     protected Ray axisRay;
     protected double radius;
 
@@ -12,7 +13,8 @@ public class Tube implements Geometry {
      * @param axis parameter for axis
      * @param radius parameter for radius
      */
-    public Tube(Ray axis, double radius) {
+    public Tube(Ray axis, double radius)
+    {
         this.axisRay = axis;
         this.radius = radius;
     }
@@ -21,7 +23,8 @@ public class Tube implements Geometry {
      * axis getter
      * @return the axis
      */
-    public Ray getAxis() {
+    public Ray getAxis() 
+    {
         return axisRay;
     }
 
@@ -29,7 +32,8 @@ public class Tube implements Geometry {
      * radius getter
      * @return the radius
      */
-    public double getRadius() {
+    public double getRadius()
+    {
         return radius;
     }
 
@@ -38,7 +42,8 @@ public class Tube implements Geometry {
      * @return string representing the tube
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Tube{" +
                 "axis=" + axisRay +
                 ", radius=" + radius +
@@ -51,7 +56,8 @@ public class Tube implements Geometry {
      * @return the perpendicular vector to the point that was received
      */
     @Override
-    public Vector getNormal(Point p) {
+    public Vector getNormal(Point p) 
+    {
         return null;
     }
 }

@@ -3,8 +3,9 @@ package geometries;
 import primitives.Point;
 import primitives.Vector;
 
-public class Sphere implements Geometry {
-    Point p0;
+public class Sphere implements Geometry 
+{
+    Point center;
     double radius;
 
     /**
@@ -12,8 +13,9 @@ public class Sphere implements Geometry {
      * @param p0 center point parameter
      * @param radius radius if the sphere
      */
-    public Sphere(Point p0, double radius) {
-        this.p0 = p0;
+    public Sphere(Point p0, double radius) 
+    {
+        this.center = p0;
         this.radius = radius;
     }
 
@@ -21,15 +23,17 @@ public class Sphere implements Geometry {
      * getter for p0
      * @return p0
      */
-    public Point getP0() {
-        return p0;
+    public Point getCenter() 
+    {
+        return center;
     }
 
     /**
      * getter for radius
      * @return the radius
      */
-    public double getRadius() {
+    public double getRadius() 
+    {
         return radius;
     }
 
@@ -38,9 +42,10 @@ public class Sphere implements Geometry {
      * @return string representing the sphere
      */
     @Override
-    public String toString() {
+    public String toString() 
+    {
         return "Sphere{" +
-                "p0=" + p0 +
+                "p0=" + center +
                 ", radius=" + radius +
                 '}';
     }
@@ -51,7 +56,8 @@ public class Sphere implements Geometry {
      * @return the perpendicular vector to the point that was received
      */
     @Override
-    public Vector getNormal(Point p) {
+    public Vector getNormal(Point p) 
+    {
       /*  Vector N = p.subtract(p0);
         return N.normalize();*/
     	return null;

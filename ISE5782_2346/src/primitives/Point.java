@@ -2,15 +2,17 @@ package primitives;
 
 import java.util.Objects;
 
-public class Point {
-    final Double3 _xyz;
+public class Point 
+{
+    final Double3 xyz;
 
     /**
      * primary constructor for point
      * @param xyz double3 value for _xyz
      */
-    public Point(Double3 xyz) {
-        _xyz = xyz;
+    public Point(Double3 _xyz)
+    {
+        xyz = _xyz;
     }
 
     /**
@@ -18,38 +20,39 @@ public class Point {
      * @param y coordinate y axis
      * @param z coordinate z axis
      */
-    public Point(double x, double y, double z) {
-        _xyz = new Double3(x,y,z);
+    public Point(double x, double y, double z)
+    {
+        xyz = new Double3(x,y,z);
     }
 
-    public Double3 getXyz() {
-        return _xyz;
+    public Double3 getXyz() 
+    {
+        return xyz;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        if (!(o instanceof Point)) return false;
-        Point other = (Point)o;
-        return this._xyz.equals(other._xyz);
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (!(obj instanceof Point)) return false;
+        Point other = (Point)obj;
+        return xyz.equals(other.xyz);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(_xyz);
+        return Objects.hash(xyz);
     }
 
     @Override
-    public String toString() {
-        return "Point" +_xyz;
-    }
+    public String toString() { return xyz.toString(); }
+
 
     public double distanceSquared(Point other)
     {
-        return (this._xyz.d1 - other._xyz.d1) * (this._xyz.d1 - other._xyz.d1) +
-                (this._xyz.d2 - other._xyz.d2) * (this._xyz.d2 - other._xyz.d2) +
-                (this._xyz.d3 - other._xyz.d2) * (this._xyz.d3 - other._xyz.d2);
+        return (this.xyz.d1 - other.xyz.d1) * (this.xyz.d1 - other.xyz.d1) +
+                (this.xyz.d2 - other.xyz.d2) * (this.xyz.d2 - other.xyz.d2) +
+                (this.xyz.d3 - other.xyz.d2) * (this.xyz.d3 - other.xyz.d2);
     }
 
     /**
@@ -66,8 +69,9 @@ public class Point {
      * @param vector object of type Vector
      * @return a new point
      */
-    public Point add(Vector vector) {
-        return new Point(_xyz.add(vector._xyz));
+    public Point add(Vector vector) 
+    {
+        return new Point(xyz.add(vector.xyz));
     }
 
     /**
@@ -75,5 +79,8 @@ public class Point {
      * @param point object of type Point
      * @return vector between 2 points
      */
-    public Vector subtract(Point point) { return new Vector(_xyz.subtract(point._xyz)); }
+    public Vector subtract(Point point)
+    { 
+    	return new Vector(xyz.subtract(point.xyz));
+    }
 }

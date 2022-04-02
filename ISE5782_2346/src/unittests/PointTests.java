@@ -19,27 +19,6 @@ import primitives.Vector;
 class PointTests
 {
 	Point p1 = new Point(1, 2, 3);
-	/**
-	 * Test method for {@link primitives.Point#distanceSquared(primitives.Point)}.
-	 */
-	@Test
-	void testDistanceSquared()
-	{
-		Point point1=new Point(0,0,3);
-		Point point2=new Point(0,4,0);
-		assertEquals("Function distanceSquared doesnt work correct",25, point1.distanceSquared(point2), 0.0001);
-	}
-
-	/**
-	 * Test method for {@link primitives.Point#distance(primitives.Point)}.
-	 */
-	@Test
-	void testDistance() 
-	{
-		Point point1=new Point(0,0,3);
-		Point point2=new Point(0,4,0);
-		assertEquals("Function distance doesnt work correct",5, point1.distance(point2), 0.0001);
-	}
 
 	/**
 	 * Test method for {@link primitives.Point#add(primitives.Vector)}.
@@ -61,5 +40,25 @@ class PointTests
 			"ERROR: Point - Point does not work correctly");
 	}
 		
-
+	/**
+	 * Test method for {@link primitives.Point#distanceSquared(primitives.Point)}.
+	 */
+	@Test
+	void testDistanceSquared()
+	{
+		Point point1=new Point(0,0,3);
+		Point point2=new Point(0,4,0);
+		assertEquals("Function distanceSquared doesnt work correct",25, point1.distanceSquared(point2), 0.0001);
+	}
+	
+	/**
+	 * Test method for {@link primitives.Point#distance(primitives.Point)}.
+	 */
+	@Test
+	void testDistance() 
+	{
+		Point point1=new Point(0,0,3);
+		Point point2=new Point(0,4,0);
+		assertEquals("Function distance doesnt work correct",5, point1.distance(point2), 0.0001);
+	}
 }

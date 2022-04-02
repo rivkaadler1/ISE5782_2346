@@ -4,12 +4,14 @@
 package unittests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
 
 import org.junit.jupiter.api.Test;
 
+import primitives.Double3;
 import primitives.Vector;
 
 /**
@@ -21,12 +23,125 @@ class VectorTests
     Vector v1 = new Vector(1, 2, 3);
     Vector v2 = new Vector(-2, -4, -6);
     Vector v3 = new Vector(0, 3, -2);
+    
+	/**
+	 * Test method for {@link primitives.Vector#add(primitives.Vector)}.
+	 */
+	@Test
+	void testAdd()
+	{
+		Vector v1;
+		Vector v2;
+		Vector vTry;
+		
+		// ============ Equivalence Partitions Tests ==============
+		try 
+		{
+			v1= new Vector(2,4,6);
+			v2= new Vector(7,8,9);	
+			vTry= new Vector(9,12,15);
+			assertTrue("testAdd() Did not add the vector correct", vTry.equals(v1.add(v2)));
+			
+			v1= new Vector(-1,-6,-4.2);
+			v2= new Vector(-2,-5.1,-9);
+			vTry=new Vector(-3,-11.1,-13.2);
+			assertTrue("testAdd() Did not add the vector correct", vTry.equals(v1.add(v2)));
+			
+
+			v1= new Vector(-1,8,23);
+			v2= new Vector(6,-5.1,3);
+			vTry=new Vector(5,2.9,26);
+			assertTrue("testAdd() Did not add the vector correct", vTry.equals(v1.add(v2)));
+			
+		} 
+		catch (Exception e) 
+		{
+			fail("testAdd() for vectors that not zero vector does not need throw an exception");
+		}		
+	}
+	
+	/**
+	 * Test method for {@link primitives.Vector#subtract(primitives.Vector)}.
+	 */
+	@Test
+	public void testSubtract() 
+	{
+		// ============ Equivalence Partitions Tests ==============
+		Vector v1;
+		Vector v2;
+		Vector vTry;
+		try 
+		{
+			v1 = new Vector(2,4,6);
+			v2=new Vector(7,8,9);		
+			vTry=new Vector(-5,-4,-3);
+			assertTrue("Subtract() Did not sub the vector correct", vTry.equals(v1.subtract(v2)));
+		} 
+		catch (Exception e) 
+		{
+			fail("Subtract() for vectors that not zero vector does not need throw an exception");
+		}
+		
+		try 
+		{
+			v1 = new Vector(9,5,4);
+			v2=new Vector(5,2,3);		
+			vTry=new Vector(4,3,1);
+			assertTrue("Subtract() Did not sub the vector correct", vTry.equals(v1.subtract(v2)));
+		} 
+		catch (Exception e) 
+		{
+			fail("Subtract() for vectors that not zero vector does not need throw an exception");
+		}
+		
+		try 
+		{
+			v1 = new Vector(-5,-5,-4);
+			v2=new Vector(-9,-1,-12);		
+			vTry=new Vector(4,-4,8);
+			assertTrue("Subtract() Did not sub the vector correct", vTry.equals(v1.subtract(v2)));
+		} 
+		catch (Exception e) 
+		{
+			fail("Subtract() for vectors that not zero vector does not need throw an exception");
+		}
+		
+		try 
+		{
+			v1 = new Vector(-5,-5,-4);
+			v2=new Vector(3,9,4);		
+			vTry=new Vector(-8,-14,-8);
+			assertTrue("Subtract() Did not sub the vector correct", vTry.equals(v1.subtract(v2)));
+		} 
+		catch (Exception e) 
+		{
+			fail("Subtract() for vectors that not zero vector does not need throw an exception");
+		}
+
+		
+		// =============== Boundary Values Tests ==================
+		
+		try 
+		{
+			v1 = new Vector(-5,-5,-4);
+			assertTrue("Subtract() Did not sub the vector correct when the other vector is the zero vector", v1.equals(v1.getXyz().subtract(Double3.ZERO)));
+			
+			@SuppressWarnings("unused")
+			Vector vZero = new Vector(Double3.ZERO);
+			//if we don't get an exception it is didn't work correct
+			fail("can not create a new vector that his head equals to zero vector");
+
+		} 
+		catch (IllegalArgumentException e) {}
+		catch (Exception e) {}
+	}
 
     /**
      * testVectorZero {@link Vector#Vector(double,double,double)}
      */
     @Test
-    void testVectorZero() {
+    void testVectorZero() 
+    {
         assertThrows(
         		IllegalArgumentException.class,
         		() -> {new Vector(0, 0, 0.0000000000000000034);},
@@ -188,52 +303,36 @@ class VectorTests
 	}
 
 	/**
-	 * Test method for {@link primitives.Vector#add(primitives.Vector)}.
+	 * Test method for {@link primitives.Vector#normalized()}.
 	 */
 	@Test
-	void testAddVector()
+	public void testNormalized() //what is the difference between this and testnormalize?
 	{
-		Vector v1;
-		Vector v2;
-		Vector vTry;
-		
-		// ============ Equivalence Partitions Tests ==============
-		try 
+		Vector v;
+		try
 		{
-			v1= new Vector(2,4,6);
-			v2= new Vector(7,8,9);	
-			vTry= new Vector(9,12,15);
-			assertTrue("testAddVector() Did not add the vector correct", vTry.equals(v1.add(v2)));
-			
-			v1= new Vector(-1,-6,-4.2);
-			v2= new Vector(-2,-5.1,-9);
-			vTry=new Vector(-3,-11.1,-13.2);
-			assertTrue("testAddVector() Did not add the vector correct", vTry.equals(v1.add(v2)));
-			
-
-			v1= new Vector(-1,8,23);
-			v2= new Vector(6,-5.1,3);
-			vTry=new Vector(5,2.9,26);
-			assertTrue("testAddVector() Did not add the vector correct", vTry.equals(v1.add(v2)));
-			
+			// ============ Equivalence Partitions Tests ==============
+			v = new Vector(1, 2, 3);
+			Vector u = v.normalize();//it was written v.normalized maybe i dont have this function
+			assertTrue("ERROR: normalizated() result is not a unit vector", isZero(u.length() - 1));    
+			assertFalse("ERROR: normalizated() function does not create a new vector", u == v );//?
 		} 
 		catch (Exception e) 
 		{
-			fail("testAddVector() for vectors that not zero vector does not need throw an exception");
-		}
-		
-		
+			fail("Normalized() for vectors that not zero vector does not need throw an exception");
+		}    
 	}
 
 	/**
 	 * Test method for {@link primitives.Vector#scale(double)}.
 	 */
 	@Test
-	void testScale()
+	void testScaling()
 	{
 		// ============ Equivalence Partitions Tests ==============
 		Vector v1;
 		Vector vTry;
+		
 		try 
 		{
 			v1 = new Vector(2,4,6);
