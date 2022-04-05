@@ -85,7 +85,7 @@ class Double3Tests {
 	 */
 	@Test
 	void testReduce() {
-		fail("Not yet implemented");
+		fail("Not yet implement");
 	}
 
 	/**
