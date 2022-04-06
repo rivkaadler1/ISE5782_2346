@@ -1,8 +1,11 @@
 package geometries;
 
-import primitives.Point;
-import primitives.Vector;
+import java.util.List;
 
+import primitives.Point;
+import primitives.Ray;
+import primitives.Vector;
+import static primitives.Util.*;
 public class Plane implements Geometry
 {
     final Point _p0;
@@ -59,6 +62,31 @@ public class Plane implements Geometry
 	public Vector getNormal(Point p)
 	{
 		return normal;		
+	}
+
+	@Override
+	public List<Point> findIntsersections(Ray ray) {
+		double nv = normal.dotProduct(ray.getDir());
+		if (isZero(nv))
+		{
+			return null;
+		}
+		
+		try 
+		{
+			Vector pSubtractP0 = point.subtract(ray.getP0());
+			double t = alignZero((normal.dotProduct(pSubtractP0))/nv);
+
+			if(t <= 0)
+			{
+				return null;
+			}
+			return List.of(new Point(this,ray.getPoint(t)));
+		}
+		catch(Exception ex) 
+		{
+			return null;
+		}
 	}
     
     

@@ -11,10 +11,6 @@ import primitives.Ray;
 
 public interface Intersectable {
 	
-	default List<Point> findIntsersections(Ray ray) throws Exception {
-		 var geoList = findGeoIntersections(ray);
-		    return geoList == null ? null
-		                           : geoList.stream().map(gp -> gp.point).collect(Collectors.toList());
-	}
+	public List<Point> findIntsersections(Ray ray);
+}
 
-List<Point> findGeoIntersections (Ray ray) throws IllegalArgumentException;

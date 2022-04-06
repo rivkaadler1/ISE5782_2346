@@ -46,6 +46,11 @@ class PlaneTests {
 		
 	}
 	@Test
+	public void testPlaneInter(){
+		fail("Not yet implemented");
+
+	}
+	@Test
 	void testGetP0() 
 	{
 		fail("Not yet implemented");
