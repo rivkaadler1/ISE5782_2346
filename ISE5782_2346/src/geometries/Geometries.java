@@ -1,4 +1,4 @@
-package geometries;
+/***package geometries;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +20,7 @@ public class Geometries implements Intersectable  {
 	 * @author sarit silverstone and rivki adler
 	 * @param geometries
 	 * */
+/***
 	public Geometries(Intersectable... geometries)
 	{
 		l =  new ArrayList<Intersectable>(Arrays.asList(geometries));
@@ -30,6 +31,7 @@ public class Geometries implements Intersectable  {
 	 * @author sarit silverstone and rivki adler
 	 * @param geometries 
 	 * */
+/***
 	public void add(Intersectable... geometries)
 	{
 		if (geometries != null)
@@ -52,4 +54,4 @@ public class Geometries implements Intersectable  {
 		return temp;
 	}
 	
-}
+}***/

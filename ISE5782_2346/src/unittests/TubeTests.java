@@ -20,22 +20,7 @@ import primitives.Vector;
 class TubeTests 
 {
 
-	/**
-	 * Test method for {@link geometries.Tube#getAxis()}.
-	 */
-	@Test
-	void testGetAxis() {
-		
-	}
 
-	/**
-	 * Test method for {@link geometries.Tube#getRadius()}.
-	 */
-	@Test
-	void testGetRadius()
-	{
-		
-	}
 
 	/**
 	 * Test method for {@link geometries.Tube#getNormal(primitives.Point)}.

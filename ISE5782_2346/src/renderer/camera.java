@@ -1,4 +1,4 @@
-package renderer;
+/****package renderer;
 import static primitives.Util.*;
 import primitives.Point;
 import primitives.Ray;
@@ -9,7 +9,7 @@ import primitives.Vector;
  * 
  * @author sarit silverstone and rivki adler
  */
-public class camera {
+/***public class camera {
     private Point p0;//location
     private Vector vRight;
     private Vector vUp;
@@ -27,7 +27,7 @@ public class camera {
 	 * @return Camera
 	 * @throws Exception 
 	 */
-	public camera(Point p0, Vector vTo, Vector vUp) throws IllegalArgumentException {
+	/***public camera(Point p0, Vector vTo, Vector vUp) throws IllegalArgumentException {
 		if(!isZero(vTo.dotProduct(vUp))) // if vTo doesn't orthogonal to vUp
 			throw new IllegalArgumentException("vUp doesnt ortogonal to vTo");
 		
@@ -47,7 +47,7 @@ public class camera {
 	 * @param height double value
 	 * @return Camera	 
 	 */
-	public camera setVPSize(double width, double height){
+	/***public camera setVPSize(double width, double height){
 		this.width = width;
 		this.height = height;
 		return this;
@@ -58,7 +58,7 @@ public class camera {
 	 * @author sarit silverstone and rivki adler
 	 * @param distance double value
 	 * @return Camera	 
-	 */
+	/*** 
 	public camera setVPDistance(double distance) {
 		this.distance = distance;
 		return this;
@@ -83,6 +83,6 @@ public class camera {
         Vector Vij = Pij.subtract(p0);
         
         return new Ray(p0,Vij);//create the ray throw the point we calculate here
-	}
+	}***/
 	
-}
+

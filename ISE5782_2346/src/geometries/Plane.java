@@ -63,7 +63,7 @@ public class Plane implements Geometry
 	{
 		return normal;		
 	}
-
+/***
 	@Override
 	public List<Point> findIntsersections(Ray ray) {
 		double nv = normal.dotProduct(ray.getDir());
@@ -88,6 +88,6 @@ public class Plane implements Geometry
 			return null;
 		}
 	}
-    
+    ***/
     
 }
