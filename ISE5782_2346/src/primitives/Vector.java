@@ -13,7 +13,7 @@ public class Vector extends Point
     public Vector(double x, double y, double z) 
     {
         super(x, y, z);
-        if(getXyz().equals(Double3.ZERO))
+        if(xyz.equals(Double3.ZERO))
             throw new IllegalArgumentException("Vector (0,0,0) is not allowed");
     }
 
@@ -21,7 +21,7 @@ public class Vector extends Point
      * Vector ctor which receives an object of type Double3
      * @param xyz an object of type Double3
      */
-    public Vector(Double3 xyz)
+    Vector(Double3 xyz)
     {
         super(xyz);
         if (xyz.equals(Double3.ZERO))
@@ -106,8 +106,9 @@ public class Vector extends Point
      */
     public Vector normalize() 
     {
-        double length = length();
-        return new Vector(xyz.reduce(length));
+    	double sum=length();
+		Vector v=new Vector(this.xyz.d1/sum, this.xyz.d2/sum, this.xyz.d3/sum);
+		return v;		   		
     }
 
     /**
@@ -122,3 +123,5 @@ public class Vector extends Point
                 (this.xyz.d3 * other.xyz.d3);
     }
 }
+
+

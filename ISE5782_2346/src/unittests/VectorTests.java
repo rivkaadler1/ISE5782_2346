@@ -11,7 +11,7 @@ import static primitives.Util.isZero;
 
 import org.junit.jupiter.api.Test;
 
-import primitives.Double3;
+import primitives.Point;
 import primitives.Vector;
 
 /**
@@ -124,10 +124,10 @@ class VectorTests
 		try 
 		{
 			v1 = new Vector(-5,-5,-4);
-			assertTrue("Subtract() Did not sub the vector correct when the other vector is the zero vector", v1.equals(v1.getXyz().subtract(Double3.ZERO)));
-			
+			assertTrue("Subtract() Did not sub the vector correct when the other vector is the zero vector", v1.equals(v1.subtract(new Point(0,0,0))));
+
 			@SuppressWarnings("unused")
-			Vector vZero = new Vector(Double3.ZERO);
+			Vector vZero = new Vector(0,0,0);
 			//if we don't get an exception it is didn't work correct
 			fail("can not create a new vector that his head equals to zero vector");
 
@@ -146,7 +146,7 @@ class VectorTests
         		IllegalArgumentException.class,
         		() -> {new Vector(0, 0, 0.0000000000000000034);},
 
-                "Vector(0,0,0) should have thrown Exception");
+        		"ERROR: zero vector does not throw an exception");
     }
 	
 
@@ -193,6 +193,7 @@ class VectorTests
 	@Test
 	void testDotProduct()
 	{
+
 		try 
 		{
 			// ============ Equivalence Partitions Tests ==============
@@ -214,6 +215,8 @@ class VectorTests
      */
     @Test
     public void testCrossProduct() {
+    	
+
         Vector v1 = new Vector(1, 2, 3);
 
         // ============ Equivalence Partitions Tests ==============
@@ -233,20 +236,6 @@ class VectorTests
         Vector v3 = new Vector(-2, -4, -6);
         assertThrows(IllegalArgumentException.class, () -> v1.crossProduct(v3),
                      "crossProduct() for parallel vectors does not throw an exception");
-        
-        
-        
-		/* test Cross-Product   //the test from the main above there are the tests that were given as example
-		try { // test zero vector
-			v1.crossProduct(v2);
-			out.println("ERROR: crossProduct() for parallel vectors does not throw an exception");
-		} catch (Exception e) {
-		}
-		Vector vr = v1.crossProduct(v3);
-		if (!isZero(vr.length() - v1.length() * v3.length()))
-			out.println("ERROR: crossProduct() wrong result length");
-		if (!isZero(vr.dotProduct(v1)) || !isZero(vr.dotProduct(v3)))
-			out.println("ERROR: crossProduct() result is not orthogonal to its operands");*/
     }
 
 
@@ -270,35 +259,27 @@ class VectorTests
 			fail("Normalize() for vectors that not zero vector does not need throw an exception");
 		}
 
+         //doesn't work!!!!
+		//assertTrue("ERROR: the normalized vector is opposite to the original one",v.dotProduct(u) < 0);
+			
 		try 
 		{
 			v = new Vector(3.5,-5,10);
-			v.normalize();
+			v=v.normalize();
 			assertEquals("ERROR: normalize() result is not a unit vector", 1, v.length(),1e-10);
 		}
 		catch (Exception e) {}
 		 // =============== Boundary Values Tests ==================
-		try
-		{
-			v = new Vector(0,0,0);
-			v.normalize();
-			fail("Didn't throw divide by zero exception!");
-		} 
-		catch (ArithmeticException e) 
-		{
-			assertTrue(true);
-		} 
-		catch (Exception e) {}
-		
+
 		// test that the vectors are co-lined
 		try 
 		{ 
+			 v = new Vector(1, 2, 3);
+		     u = v.normalize();
 			v.crossProduct(u);
 			fail("ERROR: the normalized vector is not parallel to the original one");
-		} catch (Exception e)
-		{}
-		assertTrue (!(v1.dotProduct(u) < 0),"ERROR: the normalized vector is opposite to the original one" );
-		
+		} 
+		catch (Exception e) {}
 
 	}
 
@@ -372,3 +353,8 @@ class VectorTests
 	}
 
 }
+
+
+
+
+

@@ -3,7 +3,6 @@
  */
 package unittests;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -45,31 +44,14 @@ class PlaneTests {
 		catch(Exception ex) {}
 		
 	}
-	@Test
-	public void testPlaneInter(){
-		fail("Not yet implemented");
+	
 
-	}
-	@Test
-	void testGetP0() 
-	{
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link geometries.Plane#getNormal()}.
-	 */
-	@Test
-	void testGetNormal()
-	{
-		fail("Not yet implemented");
-	}
 
 	/**
 	 * Test method for {@link geometries.Plane#getNormal(primitives.Point)}.
 	 */
 	@Test
-	void testGetNormalPoint()
+	void testGetNormal()
 	{
 		try
 		{
@@ -80,13 +62,13 @@ class PlaneTests {
 			Plane myPlane =new Plane(p1, p2 , p3);
 			double normalLength=Math.sqrt(38)*3;
 			Vector normal=new Vector(-9/normalLength, -6/normalLength, 15/normalLength);
-			assertEquals("Bad normal to plane", normal, myPlane.getNormal());
-			// =============== Boundary Values Tests ==================
-		
+			assertEquals( normal, myPlane.getNormal(),"Bad normal to plane");
+			assertEquals( 1, myPlane.getNormal().length(),"Bad normal to plane");
 		}
+		
 		catch(Exception ex)
 		{
-			fail("for vectors that not zero vector does not need throw an exception");
+			fail("for vectors that not zero vector doen't need throw an exception");
 		}
 	}
 
