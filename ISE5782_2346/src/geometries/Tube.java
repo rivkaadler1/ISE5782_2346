@@ -5,7 +5,7 @@ import primitives.Vector;
 
 public class Tube implements Geometry 
 {
-    protected Ray axisRay;
+    protected Ray axis;
     protected double radius;
 
     /**
@@ -15,7 +15,7 @@ public class Tube implements Geometry
      */
     public Tube(Ray axis, double radius)
     {
-        this.axisRay = axis;
+        this.axis = axis;
         this.radius = radius;
     }
 
@@ -25,7 +25,7 @@ public class Tube implements Geometry
      */
     public Ray getAxis() 
     {
-        return axisRay;
+        return axis;
     }
 
     /**
@@ -45,7 +45,7 @@ public class Tube implements Geometry
     public String toString()
     {
         return "Tube{" +
-                "axis=" + axisRay +
+                "axis=" + axis +
                 ", radius=" + radius +
                 '}';
     }
@@ -58,6 +58,9 @@ public class Tube implements Geometry
     @Override
     public Vector getNormal(Point p) 
     {
-        return null;
+    	double t=axis.getDir().dotProduct(p.subtract(axis.getP0()));
+		Point pointO =axis.getP0().add(axis.getDir().scale(t));
+		Vector myVec=p.subtract(pointO);
+		return myVec.normalize();
     }
 }

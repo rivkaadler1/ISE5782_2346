@@ -20,24 +20,6 @@ import primitives.Point;
 class SphereTests {
 
 	/**
-	 * Test method for {@link geometries.Sphere#getCenter()}.
-	 */
-	/*@Test
-	void testGetCenter() 
-	{
-		
-	}*/
-
-	/**
-	 * Test method for {@link geometries.Sphere#getRadius()}.
-	 */
-	/*@Test
-	void testGetRadius() 
-	{
-		
-	}*/
-
-	/**
 	 * Test method for {@link geometries.Sphere#getNormal(primitives.Point)}.
 	 */
 	@Test
