@@ -4,15 +4,15 @@ import java.util.Objects;
 
 public class Point 
 {
-    final Double3 xyz;
+    Double3 xyz;
 
     /**
      * primary constructor for point
      * @param xyz double3 value for _xyz
      */
-    public Point(Double3 _xyz)
+    Point(Double3 xyz)
     {
-        xyz = _xyz;
+        this.xyz = xyz;
     }
 
     /**
@@ -25,13 +25,10 @@ public class Point
         xyz = new Double3(x,y,z);
     }
 
-    public Double3 getXyz() 
-    {
-        return xyz;
-    }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj)
+    {
         if (this == obj) return true;
         if (obj == null) return false;
         if (!(obj instanceof Point)) return false;
@@ -40,7 +37,8 @@ public class Point
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode() 
+    {
         return Objects.hash(xyz);
     }
 
@@ -52,7 +50,7 @@ public class Point
     {
         return (this.xyz.d1 - other.xyz.d1) * (this.xyz.d1 - other.xyz.d1) +
                 (this.xyz.d2 - other.xyz.d2) * (this.xyz.d2 - other.xyz.d2) +
-                (this.xyz.d3 - other.xyz.d2) * (this.xyz.d3 - other.xyz.d2);
+                (this.xyz.d3 - other.xyz.d3) * (this.xyz.d3 - other.xyz.d3);
     }
 
     /**
