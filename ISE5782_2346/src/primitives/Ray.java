@@ -62,15 +62,6 @@ public class Ray
                 ", dir=" + dir +
                 '}';
     }
-    /**
-     * this function isn't requried in exercise 1 and maybe not required at all
-     * @param t
-     * @return point
-     */
-	public Point getPoint(int t) 
-	{
-		return p0.add(dir.scale(t));
-	}
 	
 	public Point getPoint(double t) throws IllegalArgumentException
 	{
