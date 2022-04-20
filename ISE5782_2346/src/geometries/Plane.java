@@ -1,23 +1,25 @@
 package geometries;
 
+import static primitives.Util.*;
 import java.util.List;
 
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
-import static primitives.Util.*;
 public class Plane implements Geometry
 {
-    final Point _p0;
+    final Point p0;
     final Vector normal;
 
     /**
-     * plane constructor
+     * plane 
+
      * @param p0 parameter for p0
      * @param normal parameter for normal
      */
-    public Plane(Point p0, Vector normal) {
-        _p0 = p0;
+    public Plane(Point p0, Vector normal)
+    {
+        this.p0 = p0;
       this.normal = normal;
     }
 
@@ -28,7 +30,7 @@ public class Plane implements Geometry
      * @param p3 point 3 to calculate plane
      */
     public Plane(Point p1, Point p2, Point p3) {
-        _p0 = p1;
+        p0 = p1;
         Vector U = (Vector)p2.subtract(p1);
         Vector V = (Vector)p3.subtract(p1);
         Vector N = U.crossProduct(V);
@@ -41,7 +43,7 @@ public class Plane implements Geometry
      */
     public Point getP0() 
     {
-        return _p0;
+        return p0;
     }
 
     /**
@@ -63,31 +65,32 @@ public class Plane implements Geometry
 	{
 		return normal;		
 	}
-/***
+
 	@Override
-	public List<Point> findIntsersections(Ray ray) {
+	public List<Point> findIntersections(Ray ray) 
+	{
 		double nv = normal.dotProduct(ray.getDir());
-		if (isZero(nv))
+		if (isZero(nv))//äéùø îåëì åìëï àéï ð÷åãú çéúåê
 		{
 			return null;
 		}
 		
 		try 
 		{
-			Vector pSubtractP0 = point.subtract(ray.getP0());
+			Vector pSubtractP0 = p0.subtract(ray.getP0());
 			double t = alignZero((normal.dotProduct(pSubtractP0))/nv);
 
 			if(t <= 0)
 			{
 				return null;
 			}
-			return List.of(new Point(this,ray.getPoint(t)));
+			return List.of(ray.getPoint(t));
 		}
-		catch(Exception ex) 
+		catch(Exception ex) //ä÷øï îúçéìä áð÷åãú äéçåñ ùì äîéùåø åìà ëåììéí àú øàùéú ä÷øï
 		{
 			return null;
-		}
-	}
-    ***/
+		}  
     
+   }
 }
+

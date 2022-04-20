@@ -1,17 +1,21 @@
-/***package geometries;
+package geometries;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
 import primitives.Point;
 import primitives.Ray;
-/**
- * @author sarit silverstone
- * interface that check intersection points
- * */
-/***
-public interface Intersectable {
-	
-	public List<Point> findIntsersections(Ray ray);
-}
 
-***/
+/**
+ * @author sarit silverstone and Rivki Adler
+ * interface for ray intersections
+ * 
+ **/
+
+/** 
+ * @author sarit silverstone and Rivki Adler
+ *A function that return all the intersection points with geometry
+ */
+public interface Intersectable
+{
+	public List<Point> findIntersections(Ray ray);
+}
