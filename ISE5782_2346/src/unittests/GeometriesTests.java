@@ -58,7 +58,7 @@ class GeometriesTests {
 		{
 			//=====Empty body collection (BVA)=====//
 			Geometries collection= new Geometries();
-			assertEquals("An empty body collection must return null", new Geometries(), collection);
+			assertEquals("An empty body collection must return null",  new Geometries().findIntersections(new Ray(new Point(0, -8, 0), new Vector(-10,-1,0))), collection.findIntersections(new Ray(new Point(0, -8, 0), new Vector(-10,-1,0))));
 			
 			//=====No cut shape (BVA)=====//
 			Sphere sphere = new Sphere(1,new Point(1, 0, 0)); 
