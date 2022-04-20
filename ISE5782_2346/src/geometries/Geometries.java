@@ -46,8 +46,8 @@ public class Geometries implements Intersectable
 	@Override
 	public List<Point> findIntersections(Ray ray) 
 	{
-		/**List<Point> temp = new ArrayList<Point>();
-		for (Intersectable intersectable : l) 
+	   List<Point> temp = new ArrayList<Point>();
+		for ( Intersectable intersectable : l) 
 		{
 			List<Point> intersection = intersectable.findIntersections(ray);
 			if (intersection != null)
@@ -56,8 +56,9 @@ public class Geometries implements Intersectable
 		
 		if (temp.isEmpty())
 			return null;
-		return temp;***/
-		return null;
+		return temp;
+		
+		
 	}
 	
 }
