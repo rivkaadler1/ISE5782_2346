@@ -96,4 +96,6 @@ public class Point
 	{	
 		return xyz.d3;
 	}
+
+	
 }
