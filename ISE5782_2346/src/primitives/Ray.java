@@ -1,5 +1,6 @@
 package primitives;
 
+import java.util.List;
 import java.util.Objects;
 
 
@@ -68,5 +69,22 @@ public class Ray
 		return p0.add(dir.scale(t));
 	}
 
-
+	/**
+	 * The function returns the point closest to the beginning of the beam
+	 * from all the intersection points of the resulting list.
+	 * @param points List<Point> value
+	 * @return Point3D value
+	 * */
+	public Point findClosestPoint (List<Point> points)
+	{
+		if(points == null)
+			return null;
+		Point closet = points.get(0);
+		for (Point point3d : points) 
+		{
+			if(point3d.distance(p0) < closet.distance(p0))
+				closet= point3d;
+		}
+		return closet;
+	}
 }
