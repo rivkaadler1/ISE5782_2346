@@ -13,6 +13,7 @@ import scene.Scene;
  * @author sarit silverstone and rivki adler
  */
 public class RayTracerBasic extends RayTracerBase {
+	
 	/**
 	 * constructor of RayTracerBasic
 	 * 
@@ -22,11 +23,19 @@ public class RayTracerBasic extends RayTracerBase {
 	public RayTracerBasic(Scene myscene) {
 		super(myscene);
 	}
-
+	/**
+	 * a function that calculate the color
+	 * 
+	 * @author sarit silverstone and rivki adler
+	 * @param point
+	 */
+	private Color calcColor(Point point){
+		return myScene.ambientLight.getIntensity();
+	}
 	@Override
 	public Color traceRay(Ray ray) throws IllegalArgumentException {
 		Point closestPoint = findClosestIntersection(ray);
-		return closestPoint == null ? myScene.background : calcColor(closestPoint, ray);
+		return closestPoint == null ? myScene.background : calcColor(closestPoint);
 	}
 
 	@Override

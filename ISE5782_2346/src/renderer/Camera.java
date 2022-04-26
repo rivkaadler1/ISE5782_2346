@@ -187,12 +187,14 @@ public class Camera {
 	}
 
 
-	public void setI(ImageWriter i1) {
+	public Camera setI(ImageWriter i1) {
 		this.i = i1;
+		return this;
 	}
 
-	public void setR(RayTracerBase r1) {
+	public Camera setR(RayTracerBase r1) {
 		this.r = r1;
+		return this;
 	}
 	public void renderImage() throws MissingResourceException, IllegalArgumentException {
 
@@ -209,11 +211,14 @@ public class Camera {
 		if (vRight == null) 
 	     	throw new MissingResourceException("this function must have values in all the fileds", "Vector", "vRight");
 
-	    /*for (int i1 = 0; i1 < i.getNx(); i1++)
+	    for (int i1 = 0; i1 < i.getNx(); i1++)
 		{
 			for (int j = 0; j < i.getNy(); j++)	
 			{
-				if(numOfRays == 1 || numOfRays == 0)
+				Ray ray = constructRayThroughPixel(i.getNx(), i.getNy(), j, i1);
+				i.writePixel(j, i1, r.traceRay(ray)); 
+			}
+				/*if(numOfRays == 1 || numOfRays == 0)
 				{
 					Ray ray = camera.constructRayThroughPixel(i.getNx(), i.getNy(), j, i1);
 					Color rayColor = r.traceRay(ray);
