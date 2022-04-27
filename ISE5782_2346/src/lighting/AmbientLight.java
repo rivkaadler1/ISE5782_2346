@@ -2,7 +2,7 @@ package lighting;
 
 import primitives.Color;
 import primitives.Double3;
-//@author Sarit Silverstone & Rivki Adler
+/**@author Sarit Silverstone & Rivki Adler*/
 public class AmbientLight 
 {
 	private Color intensity;
@@ -20,7 +20,7 @@ public class AmbientLight
 	
 	/**
 	 * A default constructor
-	 * this c-tor put the defalt color - black to the ambition light
+	 * this c-tor put the default color - black to the ambition light
 	 */
 	public AmbientLight() 
 	{
