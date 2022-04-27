@@ -18,8 +18,8 @@ public class Camera {
 	private double width;
 	private double height;
 	private double distance;
-	private ImageWriter i;
-	private RayTracerBase r;
+	private ImageWriter imageWriter;
+	private RayTracerBase rayTracer;
 
 	/**
 	 * This constructor that create new camera
@@ -118,7 +118,6 @@ public class Camera {
 
 	/**
 	 * Getter for p0
-	 * 
 	 * @author sarit silverstone and rivki adler
 	 * @return Point value for p0	 
 	 */
@@ -187,20 +186,22 @@ public class Camera {
 	}
 
 
-	public Camera setI(ImageWriter i1) {
-		this.i = i1;
+	public Camera setImageWriter(ImageWriter i1) {
+		this.imageWriter = i1;
 		return this;
 	}
 
-	public Camera setR(RayTracerBase r1) {
-		this.r = r1;
+	public Camera setRayTracer(RayTracerBase r1) {
+		this.rayTracer = r1;
 		return this;
 	}
-	public void renderImage() throws MissingResourceException, IllegalArgumentException {
-
-		if (i == null)
+	public void renderImage() throws MissingResourceException, IllegalArgumentException
+	{
+       try 
+       {
+		if (imageWriter == null)
 			throw new MissingResourceException("this function must have values in all the fileds", "ImageWriter", "i");
-	    if (r == null)
+	    if (rayTracer == null)
 	     	throw new MissingResourceException("this function must have values in all the fileds", "RayTracerBase", "r");
 		if (p0 == null) 
 	     	throw new MissingResourceException("this function must have values in all the fileds", "Point", "p0");
@@ -211,47 +212,57 @@ public class Camera {
 		if (vRight == null) 
 	     	throw new MissingResourceException("this function must have values in all the fileds", "Vector", "vRight");
 
-	    for (int i1 = 0; i1 < i.getNx(); i1++)
+        int nX=imageWriter.getNx();
+        int nY=imageWriter.getNy();
+        
+	    for (int i= 0; i< nX; i++)
 		{
-			for (int j = 0; j < i.getNy(); j++)	
+			for (int j = 0; j < nY; j++)	
 			{
-				Ray ray = constructRayThroughPixel(i.getNx(), i.getNy(), j, i1);
-				i.writePixel(j, i1, r.traceRay(ray)); 
-			}
-				/*if(numOfRays == 1 || numOfRays == 0)
-				{
-					Ray ray = camera.constructRayThroughPixel(i.getNx(), i.getNy(), j, i1);
-					Color rayColor = r.traceRay(ray);
-					i.writePixel(j, i1, rayColor); 
-				}
-				else
-				{	
-					List<Ray> rays = camera.constructBeamThroughPixel(i.getNx(), i.getNy(), j, i1,numOfRays);
-					Color rayColor = r.traceRay(rays);
-					i.writePixel(j, i1, rayColor); 
-				}
+				imageWriter.writePixel(j, i, castRay(nX,nY,j,i));
+		   }
 			
-		}*/
-	}
+	     }
+       }
+	   catch(MissingResourceException e)
+       {
+	    	throw new MissingResourceException("No implemented yet",e.getClassName(),e.getKey());
+       }
+}
+	  
 	/**
-//	 * A function that creates a grid of lines
-//	 * 
-//	 * @author sarit silverstone and rivki adler
-//	 * @param interval int value
-//	 * @param color Color value
-//	 * */
+	 * Cast ray from camera in order to color a pixel
+	 * @param nX resolution on X axis (number of pixels in row)
+	 * @param nY resolution on Y axis (number of pixels in column)
+	 * @param col pixel's column number (pixel index in row)
+	 * @param row pixel's row number (pixel index in column)
+	 */
+	 private Color castRay(int nX,int nY,int j,int i)
+	 {
+		 Ray ray = constructRayThroughPixel(nX, nY, j, i);
+		 Color color=rayTracer.traceRay(ray);
+		 return color;
+	 }
+	 
+	/**
+	 * A function that creates a grid of lines
+	 * 
+	 * @author sarit silverstone and rivki adler
+	 * @param interval int value
+	 * @param color Color value
+	 * */
 	public void printGrid(int interval, Color color)
 	{
-		if (i == null)
+		if (imageWriter == null)
 			throw new MissingResourceException("this function must have values in all the fileds", "ImageWriter", "i");
 		
 
-		for (int i1 = 0; i1 < i.getNx(); i1++)
+		for (int i1 = 0; i1 < imageWriter.getNx(); i1++)
 		{
-			for (int j = 0; j < i.getNy(); j++)	
+			for (int j = 0; j < imageWriter.getNy(); j++)	
 			{
 				if(i1 % interval == 0 || j % interval == 0)
-				    i.writePixel(i1, j, color); 
+				    imageWriter.writePixel(i1, j, color); 
 			}
 		}
 
@@ -264,10 +275,11 @@ public class Camera {
 	 * */
 	public void writeToImage()
 	{
-		if (i == null)
+		if (imageWriter == null)
 			throw new MissingResourceException("this function must have values in all the fileds", "ImageWriter", "imageWriter");
 		
-		i.writeToImage();
+		imageWriter.writeToImage();
 	}
+
 	
 }
