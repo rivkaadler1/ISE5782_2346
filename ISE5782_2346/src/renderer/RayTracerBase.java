@@ -5,7 +5,6 @@ import scene.Scene;
 
 /**
  * class RayTracerBase of renderer package
- * 
  * @author sarit silverstone and rivki adler
  */
 public abstract class RayTracerBase {

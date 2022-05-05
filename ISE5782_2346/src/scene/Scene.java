@@ -5,7 +5,7 @@ import lighting.AmbientLight;
 import primitives.Color;
 /**
  * class Scene for PDS
- * 
+ * Scene of occurrence of the photographed image
  * @author Sarit Silverstone& Rivki Adler
  */
 public class Scene

@@ -8,8 +8,7 @@ import primitives.Ray;
 import scene.Scene;
 
 /**
- * class RayTracerBasic in package renderer
- * 
+ * class RayTracerBasic extends RayTracerBase class 
  * @author sarit silverstone and rivki adler
  */
 public class RayTracerBasic extends RayTracerBase {

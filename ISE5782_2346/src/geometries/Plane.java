@@ -1,11 +1,17 @@
-package geometries;
 
+package geometries;
 import static primitives.Util.*;
 import java.util.List;
 
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
+
+/**
+ * Class Plane is the basic class representing a plane of Euclidean geometry implements the Geometry interface
+ * described using a point in the plane and a vector orthogonal to it (the normal vector) to indicate its "inclination" or 3 points on it.
+ * @author Rivki Adler and Sarit Silverstone
+*/
 public class Plane implements Geometry
 {
     final Point p0;
@@ -13,14 +19,13 @@ public class Plane implements Geometry
 
     /**
      * plane 
-
      * @param p0 parameter for p0
      * @param normal parameter for normal
      */
     public Plane(Point p0, Vector normal)
     {
         this.p0 = p0;
-      this.normal = normal;
+        this.normal = normal;
     }
 
     /**
@@ -55,11 +60,7 @@ public class Plane implements Geometry
         return normal;
     }
 
-    /**
-     * implement interface Geometry function
-     * @param p the point from which we want the normal
-     * @return the perpendicular vector to the point that was received
-     */
+
 	@Override
 	public Vector getNormal(Point p)
 	{
@@ -70,7 +71,7 @@ public class Plane implements Geometry
 	public List<Point> findIntersections(Ray ray) 
 	{
 		double nv = normal.dotProduct(ray.getDir());
-		if (isZero(nv))//äéùø îåëì åìëï àéï ð÷åãú çéúåê
+		if (isZero(nv))
 		{
 			return null;
 		}
@@ -78,15 +79,15 @@ public class Plane implements Geometry
 		try 
 		{
 			Vector pSubtractP0 = p0.subtract(ray.getP0());
+			//if they are in opossite directions
 			double t = alignZero((normal.dotProduct(pSubtractP0))/nv);
-
 			if(t <= 0)
 			{
 				return null;
 			}
 			return List.of(ray.getPoint(t));
 		}
-		catch(Exception ex) //ä÷øï îúçéìä áð÷åãú äéçåñ ùì äîéùåø åìà ëåììéí àú øàùéú ä÷øï
+		catch(Exception ex) 
 		{
 			return null;
 		}  

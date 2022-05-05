@@ -1,7 +1,10 @@
 package primitives;
-
 import java.util.Objects;
-
+/**
+ * Point is the basic class representing a point of 3 coordinates
+ * 3-Dimensional coordinate system.
+ * @author Rivki Adler and Sarit Silverstone
+*/
 public class Point 
 {
     Double3 xyz;
@@ -45,7 +48,11 @@ public class Point
     @Override
     public String toString() { return xyz.toString(); }
 
-
+/**
+ * calculates and returns a distance squred between another point and this
+ * @param other :Point
+ * @return a square distance :double
+ */
     public double distanceSquared(Point other)
     {
         return (this.xyz.d1 - other.xyz.d1) * (this.xyz.d1 - other.xyz.d1) +
@@ -55,7 +62,7 @@ public class Point
 
     /**
      * calculate the distance between two points
-     * @param other
+     * @param other Point
      * @return the calculated distance
      */
     public double distance(Point other) {
@@ -81,17 +88,29 @@ public class Point
     { 
     	return new Vector(xyz.subtract(point.xyz));
     }
-
+    
+    /**
+     * getter for the point's d1 coordinate
+     * @return xyz.d1
+     */
 	public double getX()
 	{	
 		return xyz.d1;
 	}
 
+    /**
+     * getter for the point's d2 coordinate
+     * @return xyz.d2
+     */
 	public double getY()
 	{	
 		return xyz.d2;
 	}
 	
+    /**
+     * getter for the point's d3 coordinate
+     * @return xyz.d3
+     */
 	public double getZ()
 	{	
 		return xyz.d3;

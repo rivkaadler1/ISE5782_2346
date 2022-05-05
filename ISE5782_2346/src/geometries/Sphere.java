@@ -6,7 +6,10 @@ import static primitives.Util.*;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
-
+/**
+ * Class Sphere is the basic class representing a sphere of Euclidean geometry implements the Geometry interface
+ * @author Rivki Adler and Sarit Silverstone
+*/
 public class Sphere implements Geometry 
 {
     Point center;
@@ -24,8 +27,8 @@ public class Sphere implements Geometry
     }
 
     /**
-     * getter for p0
-     * @return p0
+     * getter for center
+     * @return center
      */
     public Point getCenter() 
     {
@@ -54,11 +57,7 @@ public class Sphere implements Geometry
                 '}';
     }
 
-    /**
-     * implement interface Geometry function
-     * @param p the point from which we want the normal
-     * @return the perpendicular vector to the point that was received
-     */
+
     @Override
     public Vector getNormal(Point p) 
     {
@@ -78,11 +77,9 @@ public class Sphere implements Geometry
 		double tH = alignZero(Math.sqrt(radius*radius - d*d));
 		double t1 = alignZero(tM+tH);
 		double t2 = alignZero(tM-tH);
-		
-		
+				
 		if (d > radius)
-			return null; // there are no instructions
-
+			return null; // there are no intersections
 		
 		if (t1 <=0 && t2<=0)
 			return null;
@@ -95,9 +92,7 @@ public class Sphere implements Geometry
 		}
 
 		else
-			return List.of(ray.getPoint(t2));
-
-		
+			return List.of(ray.getPoint(t2));		
 		
 	}
 }

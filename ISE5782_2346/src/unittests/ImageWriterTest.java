@@ -6,7 +6,11 @@ import org.junit.jupiter.api.Test;
 
 import primitives.Color;
 import renderer.ImageWriter;
-
+/**
+ * 
+ * @author Rivki Adler &Sarit Silverstone
+ *
+ */
 class ImageWriterTest {
 
 	/**

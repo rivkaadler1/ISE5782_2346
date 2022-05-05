@@ -6,6 +6,11 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 import static primitives.Util.*;
+
+/**
+ * Class Triangle is the basic class representing a triangle of Euclidean geometry extends polygon
+ * @author Rivki Adler and Sarit Silverstone
+*/
 public class Triangle extends Polygon 
 {
 
@@ -37,7 +42,7 @@ public class Triangle extends Polygon
 		Vector n3 = v3.crossProduct(v1).normalize();
 
 		
-		//The point is inside if all 𝒗 ∙ 𝑵𝒊 have the same sign (+/-)
+		//The point is inside if all the calculations have the same sign (+/-)
 		
 		if (alignZero(n1.dotProduct(ray.getDir())) > 0 && alignZero(n2.dotProduct(ray.getDir())) > 0 && alignZero(n3.dotProduct(ray.getDir())) > 0)
 		{
