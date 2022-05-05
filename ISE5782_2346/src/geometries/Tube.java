@@ -4,7 +4,10 @@ import java.util.List;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
-
+/**
+ * Class Tube is the basic class representing a tube of Euclidean geometry implements the Geometry interface
+ * @author Rivki Adler and Sarit Silverstone
+*/
 public class Tube implements Geometry 
 {
     protected Ray axis;

@@ -11,7 +11,6 @@ import static primitives.Util.isZero;
 
 import org.junit.jupiter.api.Test;
 
-import primitives.Double3;
 import primitives.Point;
 import primitives.Vector;
 

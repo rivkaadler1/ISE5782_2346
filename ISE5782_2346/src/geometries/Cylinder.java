@@ -3,7 +3,11 @@ package geometries;
 import primitives.Point;
 import primitives.Vector;
 import primitives.Ray;
-
+/**
+ * Class Cylinder is the basic class representing a cylinder of Euclidean geometry extends tube
+ *  cylinder can be considered as a prism with a circle as its base.
+ * @author Rivki Adler and Sarit Silverstone
+*/
 public class Cylinder extends Tube 
 {
 	

@@ -2,7 +2,14 @@ package lighting;
 
 import primitives.Color;
 import primitives.Double3;
-/**@author Sarit Silverstone & Rivki Adler*/
+
+/**
+
+ * Class AmbientLight - the basic light in the scene
+ * An ambient light source represents a fixed-intensity
+ * and fixedcolor light source that affects all objects in the scene equally.
+ * @author Rivki Adler & Sarit Silverstone
+ */
 public class AmbientLight 
 {
 	private Color intensity;

@@ -1,5 +1,9 @@
 package primitives;
-
+/**
+ * Class Vector is the basic class representing a vectorof Euclidean geometry in Cartesian
+ *a quantity that has magnitude and direction 
+ * @author Rivki Adler and Sarit Silverstone
+*/
 public class Vector extends Point
 {
 

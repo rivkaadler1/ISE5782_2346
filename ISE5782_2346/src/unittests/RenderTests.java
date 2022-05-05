@@ -26,14 +26,14 @@ public class RenderTests {
 						                          new Double3(1,1,1))) //
 				.setBackground(new Color(75, 127, 90));
 
-		scene.geometries.add(new Sphere(50, new Point(0, 0, -100)),
+		scene.geometries.add(new Sphere(30, new Point(0, 0, -100)),
 				new Triangle(new Point(-100, 0, -100), new Point(0, 100, -100), new Point(-100, 100, -100)), // up
 																													// left
 				new Triangle(new Point(-100, 0, -100), new Point(0, -100, -100), new Point(-100, -100, -100)), // down
 																														// left
 				new Triangle(new Point(100, 0, -100), new Point(0, -100, -100), new Point(100, -100, -100))); // down
 																													// right
-		Camera camera = new Camera(new Point(0,0,0), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+		Camera camera = new Camera(new Point(0,0,100), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
 				.setDistance(100) //
 				.setViewPlaneSize(500, 500) //
 				.setImageWriter(new ImageWriter("base render test", 1000, 1000))				

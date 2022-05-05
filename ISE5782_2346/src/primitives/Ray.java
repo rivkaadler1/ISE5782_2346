@@ -1,9 +1,11 @@
 package primitives;
-
 import java.util.List;
 import java.util.Objects;
-
-
+/**
+ * Class Ray is the basic class representing a ray of Euclidean geometry in Cartesian
+ * defined as a part of a line that has a fixed starting point but no end point. It can extend infinitely in one direction. 
+ * @author Rivki Adler and Sarit Silverstone
+*/
 public class Ray 
 {
     final Point p0;
@@ -63,7 +65,13 @@ public class Ray
                 ", dir=" + dir +
                 '}';
     }
-	
+    
+    /**
+     *  calculates p0+t*v
+     * @param t double
+     * @return point the result of the calculation
+     * @throws IllegalArgumentException
+     */
 	public Point getPoint(double t) throws IllegalArgumentException
 	{
 		return p0.add(dir.scale(t));

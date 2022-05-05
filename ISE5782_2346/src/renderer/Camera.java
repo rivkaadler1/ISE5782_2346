@@ -9,8 +9,12 @@ import primitives.Color;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
-
-public class Camera {
+/**
+ * Class Camera The that creates rays from the camera towards the various geometries of the scene.
+ * @author Rivki Adler and Sarit Silverstone
+*/
+public class Camera
+{
 	private Point p0; //location of the camera
 	private Vector vUp;
 	private Vector vTo;
@@ -22,12 +26,11 @@ public class Camera {
 	private RayTracerBase rayTracer;
 
 	/**
-	 * This constructor that create new camera
-	 * 
+	 * This constructor creates new camera
 	 * @author  sarit silverstone and rivki adler
 	 * @param vTo Vector value
 	 * @param vUp Vector value
-	 * @param p0 Point3D value
+	 * @param p0 Point value
 	 * @return Camera
 	 * @throws Exception 
 	 */
@@ -46,7 +49,6 @@ public class Camera {
 	
 	/**
 	 * Update function for View Plane size  
-	 * 
 	 * @author  sarit silverstone and rivki adler
 	 * @param width double value
 	 * @param height double value
@@ -61,7 +63,6 @@ public class Camera {
 	
 	/**
 	 * Update function for distance
-	 * 
 	 * @author  sarit silverstone and rivki adler
 	 * @param distance double value
 	 * @return Camera	 
@@ -73,7 +74,6 @@ public class Camera {
 
 	/**
 	 * The function is responsible for creating the rays from the camera
-	 * 
 	 * @author  sarit silverstone and rivki adler
 	 * @param nX int value - resolution of pixel in X
 	 * @param nY int value - resolution of pixel in Y
@@ -137,7 +137,6 @@ public class Camera {
 
 	/**
 	 * Getter for vTo
-	 * 
 	 * @author  sarit silverstone and rivki adler
 	 * @return Vector value for vTo	 
 	 */
@@ -185,16 +184,30 @@ public class Camera {
 		return distance;
 	}
 
-
+    /**
+     * setter for image writer
+     * @param i1
+     * @return camera
+     */
 	public Camera setImageWriter(ImageWriter i1) {
 		this.imageWriter = i1;
 		return this;
 	}
-
+     /***
+      * setter for ray tracer
+      * @param r1 :RayTracerBase
+      * @return
+      */
 	public Camera setRayTracer(RayTracerBase r1) {
 		this.rayTracer = r1;
 		return this;
 	}
+	
+	/**
+	 * this function  creates the picture
+	 * @throws MissingResourceException
+	 * @throws IllegalArgumentException
+	 */
 	public void renderImage() throws MissingResourceException, IllegalArgumentException
 	{
        try 
@@ -234,8 +247,8 @@ public class Camera {
 	 * Cast ray from camera in order to color a pixel
 	 * @param nX resolution on X axis (number of pixels in row)
 	 * @param nY resolution on Y axis (number of pixels in column)
-	 * @param col pixel's column number (pixel index in row)
-	 * @param row pixel's row number (pixel index in column)
+	 * @param j pixel's column number (pixel index in row)
+	 * @param i pixel's row number (pixel index in column)
 	 */
 	 private Color castRay(int nX,int nY,int j,int i)
 	 {
@@ -246,7 +259,6 @@ public class Camera {
 	 
 	/**
 	 * A function that creates a grid of lines
-	 * 
 	 * @author sarit silverstone and rivki adler
 	 * @param interval int value
 	 * @param color Color value
@@ -270,7 +282,6 @@ public class Camera {
 	/**
 	 * A function that finally creates the image.
 	 * This function delegates the function of a class imageWriter
-	 * 
 	 * @author sarit silverstone and rivki adler
 	 * */
 	public void writeToImage()
