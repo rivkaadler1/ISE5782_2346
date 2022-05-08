@@ -12,7 +12,7 @@ import primitives.Vector;
  * described using a point in the plane and a vector orthogonal to it (the normal vector) to indicate its "inclination" or 3 points on it.
  * @author Rivki Adler and Sarit Silverstone
 */
-public class Plane implements Geometry
+public class Plane extends Geometry
 {
     final Point p0;
     final Vector normal;
@@ -93,5 +93,11 @@ public class Plane implements Geometry
 		}  
     
    }
+
+	@Override
+	public List<GeoPoint> findGeoIntersections(Ray ray) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 

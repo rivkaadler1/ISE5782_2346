@@ -8,7 +8,7 @@ import primitives.Vector;
  * Class Tube is the basic class representing a tube of Euclidean geometry implements the Geometry interface
  * @author Rivki Adler and Sarit Silverstone
 */
-public class Tube implements Geometry 
+public class Tube extends Geometry 
 {
     protected Ray axis;
     protected double radius;
@@ -72,6 +72,12 @@ public class Tube implements Geometry
 
 	@Override
 	public List<Point> findIntersections(Ray ray) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<GeoPoint> findGeoIntersections(Ray ray) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return null;
 	}

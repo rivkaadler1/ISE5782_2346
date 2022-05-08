@@ -2,6 +2,7 @@ package renderer;
 
 import java.util.List;
 
+import geometries.Intersectable.GeoPoint;
 import primitives.Color;
 import primitives.Point;
 import primitives.Ray;
@@ -27,15 +28,25 @@ public class RayTracerBasic extends RayTracerBase {
 	 * @author sarit silverstone and rivki adler
 	 * @param point
 	 */
-	private Color calcColor(Point point){
-		return myScene.ambientLight.getIntensity();
+	//private Color calcColor(GeoPoint point){
+	//	return myScene.ambientLight.getIntensity();
+	//}
+	private Color calcColor(GeoPoint geopoint, Ray ray) {
+		return calcColor(geopoint, ray).add(myScene.ambientLight.getIntensity());
 	}
-	
+	/**
+	 * Function that calculates the color for the nearest intersection point, 
+	 * if no intersection points are returned the color of the background	
+	 * 
+	 * @author sarit silverstone and rivki adler
+	 * @param ray Ray value
+	 * @return Color
+	 *  */
 	@Override
 	public Color traceRay(Ray ray) throws IllegalArgumentException 
 	{
-		Point closestPoint = ray.findClosestPoint(myScene.geometries.findIntersections(ray));
-		return closestPoint == null ? myScene.background : calcColor(closestPoint);
+		GeoPoint closestPoint = ray.findClosestGeoPoint(myScene.geometries.findGeoIntersections(ray));
+		return closestPoint == null ? myScene.background : calcColor(closestPoint,ray);
 		
 	}
 

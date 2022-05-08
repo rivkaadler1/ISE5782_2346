@@ -10,7 +10,7 @@ import primitives.Vector;
  * Class Sphere is the basic class representing a sphere of Euclidean geometry implements the Geometry interface
  * @author Rivki Adler and Sarit Silverstone
 */
-public class Sphere implements Geometry 
+public class Sphere extends Geometry 
 {
     Point center;
     double radius;
@@ -94,5 +94,11 @@ public class Sphere implements Geometry
 		else
 			return List.of(ray.getPoint(t2));		
 		
+	}
+
+	@Override
+	public List<GeoPoint> findGeoIntersections(Ray ray) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

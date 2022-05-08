@@ -5,8 +5,8 @@ import java.util.List;
 
 import primitives.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+//import static org.junit.Assert.assertEquals;
+//import static org.junit.Assert.assertNull;
 import static primitives.Util.*;
 
 /**
@@ -15,9 +15,8 @@ import static primitives.Util.*;
  * 
  * @author Dan
  */
-public class Polygon implements Geometry 
-{
-	/**
+public class Polygon extends Geometry{
+	/**extends
 	 * List of polygon's vertices
 	 */
 	protected List<Point> vertices;
@@ -97,8 +96,7 @@ public class Polygon implements Geometry
 
 
 	@Override
-	public List<Point> findIntersections(Ray ray)
-	{
+	public List<Point> findIntersections(Ray ray) {
 		List<Point> rayPoints = plane.findIntersections(ray);
 		if (rayPoints == null)
 			return null;
@@ -107,8 +105,7 @@ public class Polygon implements Geometry
 		List<Vector> normalsList = new ArrayList<Vector>();
 		Vector vI;
 		Vector vIplus1; 
-		for (int i = 0; i<= vertices.size()-1; i++)
-		{
+		for (int i = 0; i<= vertices.size()-1; i++){
 			vI = vertices.get(i).subtract(ray.getP0());
 			vIplus1 = vertices.get(i+1).subtract(ray.getP0());
 			normalsList.add((vI.crossProduct(vIplus1).normalize()));
@@ -118,29 +115,31 @@ public class Polygon implements Geometry
 		vIplus1 = vertices.get(0).subtract(ray.getP0());
 		normalsList.add((vI.crossProduct(vIplus1).normalize()));
 		
-		//The point is inside if all 𝒗 ∙ 𝑵𝒊 have the same sign (+/-)
+		//The point is inside if all נ�’— גˆ™ נ�‘µנ�’� have the same sign (+/-)
 		
 		//boolean poasitive = true;
 		int countPositive = 0;
 		int countNegative = normalsList.size();
-		for (Vector vector : normalsList) 
-		{
-			if (alignZero((ray.getDir()).dotProduct(vector)) > 0)
-			{
+		for (Vector vector : normalsList) {
+			if (alignZero((ray.getDir()).dotProduct(vector)) > 0){
 				countPositive++;
 			}
-			else if (alignZero((ray.getDir()).dotProduct(vector)) <= 0)
-			{
+			else if (alignZero((ray.getDir()).dotProduct(vector)) <= 0){
 				countNegative--;
 			}
 			
 		}
-		if (countPositive != normalsList.size() /*all normals in the positive side*/ && countNegative != 0 /*all normals in the negative side*/)
-		{
+		if (countPositive != normalsList.size() /*all normals in the positive side*/ && countNegative != 0 /*all normals in the negative side*/){
 			return null; //there is no instruction point
 		}
 		
 
 		return rayPoints;
+	}
+
+	@Override
+	public List<GeoPoint> findGeoIntersections(Ray ray) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

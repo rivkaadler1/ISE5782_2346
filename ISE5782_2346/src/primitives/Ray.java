@@ -1,6 +1,8 @@
 package primitives;
 import java.util.List;
 import java.util.Objects;
+
+import geometries.Intersectable.GeoPoint;
 /**
  * Class Ray is the basic class representing a ray of Euclidean geometry in Cartesian
  * defined as a part of a line that has a fixed starting point but no end point. It can extend infinitely in one direction. 
@@ -92,6 +94,20 @@ public class Ray
 		{
 			if(point.distance(p0) < closet.distance(p0))
 				closet= point;
+		}
+		return closet;
+	}
+	public GeoPoint findClosestGeoPoint(List<GeoPoint> intersections)
+	{
+		
+		if(intersections == null)
+			return null;
+		GeoPoint closet = intersections.get(0);
+		for (GeoPoint geoPoint : intersections) 
+		{
+			if(geoPoint.point.distance(p0) < closet.point.distance(p0))
+				closet= geoPoint;
+			
 		}
 		return closet;
 	}

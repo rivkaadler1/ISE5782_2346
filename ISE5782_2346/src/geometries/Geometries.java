@@ -11,7 +11,7 @@ import primitives.Ray;
  * implements the interface intersectable
  * @author Rivki Adler and Sarit Silverstone
 */
-public class Geometries implements Intersectable 
+public class Geometries extends Intersectable 
 {
 	List<Intersectable> l;
 	/**
@@ -60,6 +60,12 @@ public class Geometries implements Intersectable
 		if (temp.isEmpty())
 			return null;
 		return temp;		
+	}
+
+	@Override
+	public List<GeoPoint> findGeoIntersections(Ray ray) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
