@@ -62,10 +62,20 @@ public class Geometries extends Intersectable
 		return temp;		
 	}
 
+
 	@Override
-	public List<GeoPoint> findGeoIntersections(Ray ray) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return null;
+	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+		List<GeoPoint> temp = new ArrayList<GeoPoint>();
+		for (Intersectable intersectable : l) 
+		{
+			List<GeoPoint> intersection = intersectable.findGeoIntersections(ray);
+			if (intersection != null)
+				temp.addAll(intersection); 
+		}
+		
+		if (temp.isEmpty())
+			return null;
+		return temp;	
 	}
 	
 }

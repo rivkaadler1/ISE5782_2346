@@ -40,6 +40,9 @@ public abstract class Intersectable{
 	    }
 	}
 	public abstract List<Point> findIntersections(Ray ray);
-    public abstract List<GeoPoint> findGeoIntersections (Ray ray) throws IllegalArgumentException;
+	protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
+    public List<GeoPoint> findGeoIntersections (Ray ray){
+		return findGeoIntersectionsHelper(ray);
+    }
 
 }
