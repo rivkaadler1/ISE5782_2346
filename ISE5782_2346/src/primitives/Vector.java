@@ -28,7 +28,7 @@ public class Vector extends Point
     Vector(Double3 xyz)
     {
         super(xyz);
-        if (xyz.equals(Double3.ZERO))
+       if (xyz.equals(Double3.ZERO))
         {
             throw new IllegalArgumentException("Vector (0,0,0) is not allowed");
         }

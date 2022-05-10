@@ -10,9 +10,9 @@ import primitives.Double3;
  * and fixedcolor light source that affects all objects in the scene equally.
  * @author Rivki Adler & Sarit Silverstone
  */
-public class AmbientLight 
+public class AmbientLight extends Light
 {
-	private Color intensity;
+	
 	
 	/**
 	 * constructor with 2 parameters:
@@ -22,7 +22,7 @@ public class AmbientLight
 	
 	public AmbientLight(Color Ia,Double3 Ka)
 	{
-		this.intensity=Ia.scale(Ka);
+		super(Ia.scale(Ka));
 	}
 	
 	/**
@@ -31,16 +31,9 @@ public class AmbientLight
 	 */
 	public AmbientLight() 
 	{
-		intensity=Color.BLACK;
+		super(Color.BLACK);
 	}
 	
-	/**
-	 * getter to intensity
-	 * @return intensity Color 
-	 * */
-	public Color getIntensity() 
-	{
-		return intensity;
-	}
+
 
 }

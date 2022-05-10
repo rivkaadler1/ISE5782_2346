@@ -46,21 +46,6 @@ public class Geometries extends Intersectable
 		}
 	}
 	
-    @Override
-	public List<Point> findIntersections(Ray ray) 
-	{
-	   List<Point> temp = new ArrayList<Point>();
-		for ( Intersectable intersectable : l) 
-		{
-			List<Point> intersection = intersectable.findIntersections(ray);
-			if (intersection != null)
-				temp.addAll(intersection); 
-		}
-		
-		if (temp.isEmpty())
-			return null;
-		return temp;		
-	}
 
 
 	@Override

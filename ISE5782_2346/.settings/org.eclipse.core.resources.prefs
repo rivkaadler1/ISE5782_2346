@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
 encoding//src/geometries/Polygon.java=UTF-8
+encoding//src/geometries/Triangle.java=UTF-8
+encoding//src/primitives/Material.java=UTF-8
+encoding//src/renderer/RayTracerBasic.java=UTF-8

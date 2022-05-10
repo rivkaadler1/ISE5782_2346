@@ -208,7 +208,7 @@ public class Camera
 	 * @throws MissingResourceException
 	 * @throws IllegalArgumentException
 	 */
-	public void renderImage() throws MissingResourceException, IllegalArgumentException
+	public Camera renderImage() throws MissingResourceException, IllegalArgumentException
 	{
        try 
        {
@@ -241,6 +241,7 @@ public class Camera
        {
 	    	throw new MissingResourceException("No implemented yet",e.getClassName(),e.getKey());
        }
+       return this;
 }
 	  
 	/**

@@ -68,32 +68,7 @@ public class Plane extends Geometry
 		return normal;		
 	}
 
-	@Override
-	public List<Point> findIntersections(Ray ray) 
-	{
-		double nv = normal.dotProduct(ray.getDir());
-		if (isZero(nv))
-		{
-			return null;
-		}
-		
-		try 
-		{
-			Vector pSubtractP0 = p0.subtract(ray.getP0());
-			//if they are in opossite directions
-			double t = alignZero((normal.dotProduct(pSubtractP0))/nv);
-			if(t <= 0)
-			{
-				return null;
-			}
-			return List.of(ray.getPoint(t));
-		}
-		catch(Exception ex) 
-		{
-			return null;
-		}  
-    
-   }
+
 
 	@Override
 	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray)throws IllegalArgumentException  {
