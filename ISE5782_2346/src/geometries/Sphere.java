@@ -44,10 +44,7 @@ public class Sphere extends Geometry
         return radius;
     }
 
-    /**
-     * override toString
-     * @return string representing the sphere
-     */
+
     @Override
     public String toString() 
     {

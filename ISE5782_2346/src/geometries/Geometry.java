@@ -4,8 +4,8 @@ import primitives.Point;
 import primitives.Vector;
 
 /**
- * interface for all the geometries that have normal
- * implements intersectable
+ * an abstract class for all the geometries that have normal
+ * extends intersectable
  * @author Sarit Silverstone and Rivki Adler
  */
 public abstract class Geometry extends Intersectable{
@@ -13,7 +13,7 @@ public abstract class Geometry extends Intersectable{
 	
 	
 	    
-	  //  @Override
+	  //  @Override//wasn't in exercise 5
 		//public boolean equals(Object obj) 
 		//{
 		//	if (this == obj) return true;

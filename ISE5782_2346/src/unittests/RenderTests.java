@@ -27,7 +27,7 @@ public class RenderTests {
 						new Double3(1, 1, 1))) //
 				.setBackground(new Color(75, 127, 90));
 
-		scene.geometries.add(new Sphere(50d,new Point(0, 0, -100)),
+		scene.geometries.add (new Sphere(50d,new Point(0, 0, -100)),
 				new Triangle(new Point(-100, 0, -100), new Point(0, 100, -100), new Point(-100, 100, -100)), // up
 																												// left
 				new Triangle(new Point(-100, 0, -100), new Point(0, -100, -100), new Point(-100, -100, -100)), // down
@@ -56,7 +56,7 @@ public class RenderTests {
 				.setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.2))); //
 
 		scene.geometries.add( //
-				new Sphere(50,new Point(0, 0, -100)),
+				new Sphere( 50,new Point(0, 0, -100)),
 				// up left
 				new Triangle(new Point(-100, 0, -100), new Point(0, 100, -100), new Point(-100, 100, -100))
 						.setEmission(new Color(GREEN)),
@@ -78,5 +78,23 @@ public class RenderTests {
 		camera.writeToImage();
 	}
 
-	
+	/**
+	 * Test for XML based scene - for bonus
+	 */
+	@Test
+	public void basicRenderXml() {
+		Scene scene = new Scene("XML Test scene");
+		// enter XML file name and parse from XML file into scene object
+		// ...
+
+		Camera camera = new Camera(new Point(0,0,0), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+				.setDistance(100) //
+				.setViewPlaneSize(500, 500).setImageWriter(new ImageWriter("xml render test", 1000, 1000))
+				.setRayTracer(new RayTracerBasic(scene));
+		camera.renderImage();
+		camera.printGrid(100, new Color(YELLOW));
+		camera.writeToImage();
+	}
 }
+
+

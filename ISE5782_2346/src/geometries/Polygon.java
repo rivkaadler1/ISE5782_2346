@@ -94,7 +94,6 @@ public class Polygon extends Geometry{
 	}
 
 
-
 	@Override
 	public List<Point> findIntersections(Ray ray) {
 		List<Point> rayPoints = plane.findIntersections(ray);
@@ -129,13 +128,14 @@ public class Polygon extends Geometry{
 			}
 			
 		}
-		if (countPositive != normalsList.size() /*all normals in the positive side*/ && countNegative != 0 /*all normals in the negative side*/){
+		if (countPositive != normalsList.size() /*all normals in the positive side*/&& countNegative != 0 /*all normals in the negative side*/){
 			return null; //there is no instruction point
 		}
 		
 
 		return rayPoints;
 	}
+
 
 	@Override
 	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray)throws IllegalArgumentException  {
@@ -161,7 +161,7 @@ public class Polygon extends Geometry{
 		vIplus1 = vertices.get(0).subtract(ray.getP0());
 		normalsList.add((vI.crossProduct(vIplus1).normalize()));
 		
-		//The point is inside if all 𝒗 ∙ 𝑵𝒊 have the same sign (+/-)
+		//The point is inside if all have the same sign (+/-)
 		
 		//boolean poasitive = true;
 		int countPositive = 0;

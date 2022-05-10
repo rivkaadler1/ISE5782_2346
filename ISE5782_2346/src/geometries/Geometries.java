@@ -46,7 +46,7 @@ public class Geometries extends Intersectable
 		}
 	}
 	
-	@Override
+    @Override
 	public List<Point> findIntersections(Ray ray) 
 	{
 	   List<Point> temp = new ArrayList<Point>();
@@ -78,4 +78,7 @@ public class Geometries extends Intersectable
 		return temp;	
 	}
 	
+
+
+
 }

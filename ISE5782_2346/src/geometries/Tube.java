@@ -69,17 +69,17 @@ public class Tube extends Geometry
 		return myVec.normalize();
     }
 
-
 	@Override
 	public List<Point> findIntersections(Ray ray) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-
 	@Override
 	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 }

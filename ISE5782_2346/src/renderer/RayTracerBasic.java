@@ -31,9 +31,14 @@ public class RayTracerBasic extends RayTracerBase {
 	//private Color calcColor(GeoPoint point){
 	//	return myScene.ambientLight.getIntensity();
 	//}
-	private Color calcColor(GeoPoint geopoint, Ray ray) {
-		return calcColor(geopoint, ray).add(myScene.ambientLight.getIntensity());
-	}
+	//private Color calcColor(GeoPoint geopoint, Ray ray) {
+		//return calcColor(geopoint, ray).add(myScene.ambientLight.getIntensity());
+	//}
+	
+	private Color calcColor(GeoPoint gp) {
+		return myScene.ambientLight.getIntensity()
+		.add(gp.geometry.getEmission());
+		}
 	/**
 	 * Function that calculates the color for the nearest intersection point, 
 	 * if no intersection points are returned the color of the background	
@@ -45,9 +50,13 @@ public class RayTracerBasic extends RayTracerBase {
 	@Override
 	public Color traceRay(Ray ray) throws IllegalArgumentException 
 	{
-		GeoPoint closestPoint = ray.findClosestGeoPoint(myScene.geometries.findGeoIntersections(ray));
-		return closestPoint == null ? myScene.background : calcColor(closestPoint,ray);
-		
+		//GeoPoint closestPoint = ray.findClosestGeoPoint(myScene.geometries.findGeoIntersections(ray));
+		//return closestPoint == null ? myScene.background : calcColor(closestPoint,ray);
+		var intersections = myScene.geometries.findGeoIntersections(ray);
+		if (intersections == null) return myScene.background;
+		GeoPoint closestPoint = ray.findClosestGeoPoint(intersections);
+		return calcColor(closestPoint);
+
 	}
 
 }

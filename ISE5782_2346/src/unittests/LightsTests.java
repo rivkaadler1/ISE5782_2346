@@ -1,4 +1,4 @@
-package unittests.renderer;
+package unittests;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,7 +38,7 @@ public class LightsTests {
 	private Material material = new Material().setKd(0.5).setKs(0.5).setShininess(300);
 	private Geometry triangle1 = new Triangle(p[0], p[1], p[2]).setMaterial(material);
 	private Geometry triangle2 = new Triangle(p[0], p[1], p[3]).setMaterial(material);
-	private Geometry sphere = new Sphere(50d, new Point(0, 0, -50)) //
+	private Geometry sphere = new Sphere( 50d,new Point(0, 0, -50)) //
 			.setEmission(new Color(BLUE).reduce(2)) //
 			.setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(300));
 
@@ -164,4 +164,3 @@ public class LightsTests {
 	}
 
 }
-

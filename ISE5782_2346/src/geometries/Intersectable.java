@@ -12,19 +12,16 @@ import primitives.Ray;
  * @author sarit silverstone and Rivki Adler
  */
 public abstract class Intersectable{
+
 	/**
-	 * finds all the intersection points with geometry
-	 * @param ray
-	 * @return list of intersection points
-	 */
-	/**
-	 * Static Internal Auxiliary Department (as a completely passive data structure - PDS)
+	 * Static Internal Auxiliary class (as a completely passive data structure - PDS)
 	 * 
 	 * @author sarit silverstone and rivki adler
 	 * @param geometry Geometry value
-	 * @param point Point3D value
+	 * @param point Point value
 	 * */
-	public static class GeoPoint {
+	public static class GeoPoint
+	{
 	    public Geometry geometry;
 	    public Point point;
 	    /**
@@ -32,14 +29,31 @@ public abstract class Intersectable{
 	     * 
 	     * @author sarit silverstone and rivki adler
 	     * @param geometry Geometry
-	     * @param point Point3D
+	     * @param point Point
 	     * */
 	    public GeoPoint(Geometry geometry,Point point){
 	    	this.geometry = geometry;
 	    	this.point = point;
 	    }
+	    
+
+		 
 	}
+	
+
+	
+	/**
+	 * finds all the intersection points with geometry
+	 * @param ray
+	 * @return list of intersection points
+	 */
 	public abstract List<Point> findIntersections(Ray ray);
+	/*public List<Point> findIntersections(Ray ray) {
+	    var geoList = findGeoIntersections(ray);
+	    return geoList == null ? null
+	                           : geoList.stream().map(gp -> gp.point).toList();
+	}*/
+
 	protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
     public List<GeoPoint> findGeoIntersections (Ray ray){
 		return findGeoIntersectionsHelper(ray);
