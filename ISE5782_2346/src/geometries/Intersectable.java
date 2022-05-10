@@ -24,6 +24,7 @@ public abstract class Intersectable{
 	 * @param geometry Geometry value
 	 * @param point Point3D value
 	 * */
+	
 	public static class GeoPoint {
 	    public Geometry geometry;
 	    public Point point;
@@ -37,6 +38,18 @@ public abstract class Intersectable{
 	    public GeoPoint(Geometry geometry,Point point){
 	    	this.geometry = geometry;
 	    	this.point = point;
+	    }
+	    @Override
+		public String toString(){
+			return "GeoPoint [geometry=" +geometry + ", point=" + point + "]";
+		}
+	    @Override
+	    public boolean equals(Object obj) {
+	    	if(this==obj)return true;
+	    	if(obj==null) return false;
+	    	if(!(obj instanceof GeoPoint))return false;
+	    	GeoPoint other =(GeoPoint)obj;
+	    	return this.geometry==other.geometry&&this.point.equals(other.point);
 	    }
 	}
 	public abstract List<Point> findIntersections(Ray ray);
