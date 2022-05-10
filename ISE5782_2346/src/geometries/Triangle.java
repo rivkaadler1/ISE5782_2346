@@ -1,7 +1,9 @@
 package geometries;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import geometries.Intersectable.GeoPoint;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
@@ -54,6 +56,11 @@ public class Triangle extends Polygon
 		}
 		if (isZero(n1.dotProduct(ray.getDir())) || isZero(n2.dotProduct(ray.getDir())) || isZero(n3.dotProduct(ray.getDir())))
 			return null; //there is no instruction point
+		return null;
+	}
+	
+	@Override
+	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray)throws IllegalArgumentException  {
 		return null;
 	}
 }
