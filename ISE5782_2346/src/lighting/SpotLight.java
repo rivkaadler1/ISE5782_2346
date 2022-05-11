@@ -3,7 +3,12 @@ import static primitives.Util.*;
 import primitives.Color;
 import primitives.Point;
 import primitives.Vector;
-
+/***
+ * a class for point light -
+A lamp in a space that emits light  in one direction
+ * @author Rivki Adler and Sarit Silverstone
+ *
+ */
 public class SpotLight extends PointLight
 {
     private Vector direction;

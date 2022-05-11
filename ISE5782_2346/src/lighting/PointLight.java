@@ -3,7 +3,12 @@ package lighting;
 import primitives.Color;
 import primitives.Point;
 import primitives.Vector;
-
+/***
+ * a class for point light -
+A lamp in a space that emits light evenly in all directions
+ * @author Rivki Adler and Sarit Silverstone
+ *
+ */
 public class PointLight extends Light implements LightSource
 {
 

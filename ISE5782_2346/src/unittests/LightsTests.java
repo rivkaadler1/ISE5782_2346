@@ -160,7 +160,7 @@ public class LightsTests {
 				.writeToImage(); //
 	}*/
 	/**
-	 * Produce a picture of a two triangles lighted by a spot lights
+	 * Produce a picture of a two triangles lighted by  lights
 	 */
 	@Test
 	public void trianglesLights() {
@@ -180,7 +180,7 @@ public class LightsTests {
 	}
 
 	/**
-	 * Produce a picture of a sphere lighted by a lights
+	 * Produce a picture of a sphere lighted by lights
 	 */
 	@Test
 	public void sphereLights() {

@@ -3,7 +3,12 @@ package lighting;
 import primitives.Color;
 import primitives.Point;
 import primitives.Vector;
-
+/***
+ * a class for directional light -evenly simulates a light source like the sun. Does not weaken over time. Contains the power
+(intensity)
+ * @author Rivki Adler and Sarit Silverstone
+ *
+ */
 public class DirectionalLight extends Light implements LightSource 
 {
 

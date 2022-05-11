@@ -46,9 +46,15 @@ public class RayTracerBasic extends RayTracerBase {
     private Color calcColor(Intersectable.GeoPoint point, Ray ray) {
         return myScene.ambientLight.getIntensity()
                 .add(point.geometry.getEmission())
-                .add(calcLocalEffects(point, ray));
+                .add(calcLocalEffects(point, ray));//we send the ray(v) for the specular light calculation -v*r
     }
 
+    /**
+     * calculate the local effects of the lights on the geometry
+     * @param intersection -geopoint
+     * @param ray-the ray from the camera
+     * @return the local color of the geopoint
+     */
     private Color calcLocalEffects(Intersectable.GeoPoint intersection, Ray ray){
 
         Vector v = ray.getDir ();
@@ -72,6 +78,17 @@ public class RayTracerBasic extends RayTracerBase {
         return color;
     }
 
+    /**
+     * calculate the specular color
+     * @param ks  the level of the speculation
+     * @param l the vector from the light to the geometry
+     * @param n normal of the geometry
+     * @param nl the product between n and l
+     * @param v the vector from the camera
+     * @param nShininess the shininess of the geometry
+     * @param lightIntensity 
+     * @return specular color
+     */
     private Color calcSpecular(Double3 ks, Vector l, Vector n, double nl, Vector v,int nShininess, Color lightIntensity) {
         l = l.normalize();
         Vector r = l.subtract(n.scale(2*nl)).normalize();
@@ -85,7 +102,13 @@ public class RayTracerBasic extends RayTracerBase {
 //        double vr=Math.pow(v.scale(-1).dotProduct(r),nShininess);
 //        return lightIntensity.scale(ks*Math.pow(vr,specularN));
     }
-
+     /**
+      * calculate the diffusive light
+      * @param kd the level of the diffuse
+      * @param nl 
+      * @param lightIntensity
+      * @return
+      */
     private Color calcDiffusive(Double3 kd, double nl, Color lightIntensity) {
         if(nl < 0)
            nl = -nl;
