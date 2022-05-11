@@ -14,6 +14,7 @@ import static java.awt.Color.*;
  * 
  * @author Dan
  */
+
 public class LightsTests {
 	private Scene scene1 = new Scene("Test scene");
 	private Scene scene2 = new Scene("Test scene") //
@@ -32,7 +33,7 @@ public class LightsTests {
 			new Point(-75, 78, 100) }; // the left-top
 	private Point trPL = new Point(30, 10, -100); // Triangles test Position of Light
 	private Point spPL = new Point(-50, -50, 25); // Sphere test Position of Light
-	private Color trCL = new Color(800, 500, 250); // Triangles test Color of Light
+	private Color trCL = new Color(800, 500,250 ); // Triangles test Color of Light
 	private Color spCL = new Color(800, 500, 0); // Sphere test Color of Light
 	private Vector trDL = new Vector(-2, -2, -2); // Triangles test Direction of Light
 	private Material material = new Material().setKd(0.5).setKs(0.5).setShininess(300);

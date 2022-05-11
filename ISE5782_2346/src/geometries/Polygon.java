@@ -3,7 +3,6 @@ package geometries;
 import java.util.ArrayList;
 import java.util.List;
 
-import geometries.Intersectable.GeoPoint;
 import primitives.*;
 
 //import static org.junit.Assert.assertEquals;
@@ -121,7 +120,7 @@ public class Polygon extends Geometry{
 		
 		//The point is inside if all 𝒗 ∙ 𝑵𝒊 have the same sign (+/-)
 		
-		//boolean poasitive = true;
+		//boolean positive = true;
 		int countPositive = 0;
 		int countNegative = normalsList.size();
 		for (Vector vector : normalsList) 
@@ -136,7 +135,7 @@ public class Polygon extends Geometry{
 			}
 			
 		}
-		if (countPositive != normalsList.size() /*all normals in the positive side*/ && countNegative != 0 /*all normals in the negative side*/)
+		if (countPositive != normalsList.size() /*all normals in the positive side*/ &&countNegative != 0/* all normals in the negative side*/)
 		{
 			return null; //there is no instruction point
 		}

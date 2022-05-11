@@ -8,9 +8,7 @@ package primitives;
 public class Material 
 {
 
-	/**
-	 * 
-	 */
+
 	
 	public int nShininess=0;
 	public Double3 KD=new Double3(0);

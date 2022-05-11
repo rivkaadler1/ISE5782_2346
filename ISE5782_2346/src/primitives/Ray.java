@@ -85,18 +85,7 @@ public class Ray
 	 * @param points List<Point> value
 	 * @return Point value
 	 * */
-	/*public Point findClosestPoint (List<Point> points)
-	{
-		if(points == null)
-			return null;
-		Point closet = points.get(0);
-		for (Point point : points) 
-		{
-			if(point.distance(p0) < closet.distance(p0))
-				closet= point;
-		}
-		return closet;
-	}*/
+
 	public Point findClosestPoint(List<Point> points) {
 	    return points == null || points.isEmpty() ? null
 	           : findClosestGeoPoint(points.stream().map(p -> new GeoPoint(null, p)).toList()).point;
