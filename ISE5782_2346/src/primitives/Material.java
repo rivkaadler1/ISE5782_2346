@@ -1,7 +1,7 @@
 package primitives;
 
 /**
- * the material class PDS
+ * the material class PDS the material of a geometry
  * @author Rivki Adler & Sarit Silverstone
  *
  */
@@ -25,6 +25,7 @@ public class Material
 		
 	}
 
+	
 	/**
 	 * @param kD the kD to set
 	 */
