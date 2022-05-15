@@ -1,16 +1,14 @@
 package primitives;
 
 /**
- * the material class PDS
+ * the material class PDS the material of a geometry
  * @author Rivki Adler & Sarit Silverstone
  *
  */
 public class Material 
 {
 
-	/**
-	 * 
-	 */
+
 	
 	public int nShininess=0;
 	public Double3 KD=new Double3(0);
@@ -27,6 +25,7 @@ public class Material
 		
 	}
 
+	
 	/**
 	 * @param kD the kD to set
 	 */
