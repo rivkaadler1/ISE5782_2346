@@ -15,6 +15,8 @@ import static primitives.Util.alignZero;
  *  RayTracerBasic class extends RayTracerBase and implement the abstract function traceRay
  */
 public class RayTracerBasic extends RayTracerBase {
+	
+	private static final double DELTA = 0.1;
 
     /**
      * Constructor
@@ -70,9 +72,11 @@ public class RayTracerBasic extends RayTracerBase {
             Vector l = lightSource.getL(intersection.point).normalize();
             double nl = alignZero(n.dotProduct(l));
             if (nl * nv > 0) { // sign(nl) == sing(nv)
+            	if (unshaded(intersection, lightSource, l, n, nv)) {
                 Color lightIntensity = lightSource.getIntensity(intersection.point);
                 color = color.add(calcDiffusive(kd, nl, lightIntensity),
                         calcSpecular(ks, l, n,nl, v, nShininess, lightIntensity));
+            	}
             }
         }
         return color;
@@ -116,5 +120,33 @@ public class RayTracerBasic extends RayTracerBase {
 //        double ln=alignZero(Math.abs(n.dotProduct(l)));
 //        return lightIntensity.scale(kd*ln);
     }
+    /**
+	 * A function that check if there is shaded or not
+	 * 
+	 * @author sarit silverstone and rivki adler
+	 * @param light LightSource value
+	 * @param l Vector value
+	 * @param n Vector value
+	 * @param geopoint GeoPoint value
+	 * @return true or false
+	 * */
+	private boolean unshaded(GeoPoint geopoint , LightSource light, Vector l, Vector n,double nv){
+		Vector lightDirection = l.scale(-1); // from point to light source
+		Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : -DELTA);// where we need to move the point
+		Point point = geopoint.point.add(delta);// moving the point
+		Ray lightRay = new Ray(point, lightDirection); // refactored ray head move
+		List<GeoPoint> intersections = myScene.geometries.findGeoIntersections(lightRay);
+		double lightDistance = light.getDistance(geopoint.point);
+		if (intersections == null) 
+			return true;
+		for (var gp : intersections) {
+			double distance = gp.point.distance(gp.point);
+			if(distance>=lightDistance) {
+				intersections.remove(gp);
+			}
+				
+		}
+		return (intersections.isEmpty());
+	}
 
 }
