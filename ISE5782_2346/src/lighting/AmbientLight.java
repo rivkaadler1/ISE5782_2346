@@ -17,12 +17,12 @@ public class AmbientLight extends Light
 	/**
 	 * constructor with 2 parameters:
 	 * @param Ia For original fill light (light intensity according to RGB components) - I_A
-	 * @param Ka Filling light attenuation coefficient - k_A
+	 * @param double3 Filling light attenuation coefficient - k_A
 	 */
 	
-	public AmbientLight(Color Ia,Double3 Ka)
+	public AmbientLight(Color Ia,Double3 double3)
 	{
-		super(Ia.scale(Ka));
+		super(Ia.scale(double3));
 	}
 	
 	/**
