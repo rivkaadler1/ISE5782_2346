@@ -34,5 +34,8 @@ public class SpotLight extends PointLight
 			return Color.BLACK;
 		return super.getIntensity(p).scale(pl);
 	}
-
+	@Override
+	public double getDistance(Point point) {
+		return super.getDistance(point);
+	}
 }

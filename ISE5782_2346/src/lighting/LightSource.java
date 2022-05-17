@@ -11,11 +11,8 @@ import primitives.Vector;
  */
 public interface LightSource 
 {
-	
-
 	/**
 	 * A function that return the intensity at a point
-	 * 
 	 * @author Rivki Adler & Sarit Silverstone
 	 * @param p Point value
 	 * @return intensity color in this point
@@ -30,5 +27,10 @@ public interface LightSource
 	 * @return the lighting direction on a point
 	 */
 	public Vector getL(Point p);
+	/**
+	 * calculates and returns the distance between a light source and a point
+	 * @param point
+	 * @return distance from the point
+	 */
 	double getDistance(Point point);
 }
