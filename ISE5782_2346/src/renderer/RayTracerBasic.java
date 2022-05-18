@@ -17,6 +17,9 @@ import static primitives.Util.alignZero;
 public class RayTracerBasic extends RayTracerBase
 {
 
+	/**
+	 * limits the recursion depth
+	 */
     private static final int MAX_CALC_COLOR_LEVEL = 10;
     private static final double MIN_CALC_COLOR_K = 0.001;
     private static final double INITIAL_K = 1.0;
@@ -40,13 +43,18 @@ public class RayTracerBasic extends RayTracerBase
 		GeoPoint closestPoint = findClosestIntersection(ray);
 		return closestPoint == null ? myScene.background : calcColor(closestPoint, ray);
     }
-
+   
     private Color calcColor(GeoPoint gp, Ray ray) 
     {
     	return calcColor(gp, ray, MAX_CALC_COLOR_LEVEL, new Double3(INITIAL_K))//i am not sure about the initial_k
     			.add(myScene.ambientLight.getIntensity());
     }
-    
+	/**
+	 * Function for calculating a point color - recursive function	
+	 * @param point Point3D value
+	 * @return Color
+	 * @throws IllegalArgumentException 
+	 * */
     private Color calcColor(GeoPoint gp, Ray ray, int level, Double3 k)
     {
 
@@ -55,7 +63,14 @@ public class RayTracerBasic extends RayTracerBase
     	Color color = Ie.add(calcLocalEffects(gp, ray,k));
     	return 1 == level ? color : color.add(calcGlobalEffects(gp, ray, level, k));
     }
-    
+	/**
+	 * A function that calculate the globals effects of the color
+	 * @param intersection GeoPoint value
+	 * @param ray Ray value
+	 * @param level int value
+	 * @param k Double3 value
+	 * @return Color
+	 * */
     private Color calcGlobalEffects(GeoPoint gp,Ray v, int level, Double3 k)
     {
     	Color color = Color.BLACK; Vector n = gp.geometry.getNormal(gp.point);
@@ -75,9 +90,11 @@ public class RayTracerBasic extends RayTracerBase
     	.scale(kx));
 
     }
-
-
-    
+    /**
+     * help function that calculate the local color
+    * @param intersection GeoPoint value
+     * @param ray Ray value
+    * */  
 	private Color calcLocalEffects(GeoPoint intersection, Ray ray, Double3 k) 
 	{
 		Vector v = ray.getDir().normalize();
@@ -142,31 +159,6 @@ public class RayTracerBasic extends RayTracerBase
     }
     
 
-
-    /**
-	 * A function that check if there is shaded or not
-	 * 
-	 * @author sarit silverstone and rivki adler
-	 * @param light LightSource value
-	 * @param l Vector value
-	 * @param n Vector value
-	 * @param geopoint GeoPoint value
-	 * @return true or false
-	 * */
-    private boolean unshaded(Vector l, Vector n, GeoPoint geopoint, LightSource ls) {
-		Vector lightDirection = l.scale(-1); // from point to light source
-		Ray lightRay = new Ray(geopoint.point, lightDirection, n); // refactored ray head move
-		List<GeoPoint> intersections = myScene.geometries.findGeoIntersections(lightRay);
-		if (intersections == null) 
-			return true;
-		double lightDistance = ls.getDistance(geopoint.point);
-		for (GeoPoint gp : intersections) 
-		{
-			if (alignZero(gp.point.distance(geopoint.point) - lightDistance) <= 0 && gp.geometry.getMaterial().KT.equals(new Double3(0)) )
-				      return false;
-		}
-		return true;     
-    }
     
 	/**
 	 * A function that calculates the refracted rays.

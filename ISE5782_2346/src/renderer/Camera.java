@@ -1,8 +1,6 @@
 package renderer;
 import static primitives.Util.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.MissingResourceException;
 
 import primitives.Color;
