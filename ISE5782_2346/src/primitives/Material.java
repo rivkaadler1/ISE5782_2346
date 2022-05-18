@@ -13,8 +13,14 @@ public class Material
 	public int nShininess=0;
 	public Double3 KD=new Double3(0);
 	public Double3 KS=new Double3(0);
-//	public Object KT; 
-
+	/**
+	 * refractive/transparency index
+	 */
+	public Double3 KT=new Double3(0);
+	/**
+	 *reflection coefficient
+	 */
+	public Double3 KR=new Double3(0);
 
 	/**
 	 * @param nShininess the nShininess to set
@@ -28,7 +34,8 @@ public class Material
 
 	
 	/**
-	 * @param kD the kD to set
+	 * setter to KD
+	 * @param kD 
 	 */
 	public Material setKd(double kD) 
 	{
@@ -37,16 +44,38 @@ public class Material
 	}
 
 	/**
-	 * @param kS the kS to set
+	 * setter to KS
+	 * @param kS 
 	 */
 	public Material setKs(double kS) 
 	{
 		KS = new Double3(kS);
 		return this;
 	}
+	
+	/**
+	 * setter to KR
+	 * @param kR  
+	 */
+	public Material setKr(double kR) 
+	{
+		KR = new Double3(kR);
+		return this;
+	}
 
 	/**
-	 * @param kD the kD to set
+	 * setter to KT
+	 * @param kT 
+	 */
+	public Material setKt(double kT) 
+	{
+		KT = new Double3(kT);
+		return this;
+	}
+
+	/**
+	 * setter to KD
+	 * @param kD 
 	 */
 	public Material setKd(Double3 kD) 
 	{
@@ -55,11 +84,32 @@ public class Material
 	}
 
 	/**
-	 * @param kS the kS to set
+	 * setter to KS
+	 * @param kS 
 	 */
 	public Material setKs(Double3 kS) 
 	{
 		KS = kS;
+		return this;
+	}
+	
+	/**
+	 * setter to KR
+	 * @param kR 
+	 */
+	public Material setKr(Double3 kR) 
+	{
+		KR = kR;
+		return this;
+	}
+
+	/**
+	 * setter to KT 
+	 * @param kT 
+	 */
+	public Material setKt(Double3 kT) 
+	{
+		KT = kT;
 		return this;
 	}
 }

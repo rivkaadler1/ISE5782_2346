@@ -33,7 +33,7 @@ public abstract class Intersectable{
 	     * 
 	     * @author sarit silverstone and rivki adler
 	     * @param geometry Geometry
-	     * @param point Point3D
+	     * @param point Point
 	     * */
 	    public GeoPoint(Geometry geometry,Point point){
 	    	this.geometry = geometry;

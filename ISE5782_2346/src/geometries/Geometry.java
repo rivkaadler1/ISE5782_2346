@@ -13,15 +13,7 @@ public abstract class Geometry extends Intersectable{
 	protected Color emission = Color.BLACK;
 	private Material material=new Material();
 	    
-	  //  @Override//wasn't in exercise 5
-		//public boolean equals(Object obj) 
-		//{
-		//	if (this == obj) return true;
-		//	if (obj == null) return false;
-		//	if (!(obj instanceof GeoPoint)) return false;
-		//	GeoPoint other = (GeoPoint)obj;
-		//	return this.geometry.equals(other.geometry) && this.point.equals(other.point);
-		//}
+
 	
 
 	/**

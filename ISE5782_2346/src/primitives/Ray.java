@@ -1,5 +1,6 @@
 package primitives;
 import java.util.List;
+import static primitives.Util.*;
 import java.util.Objects;
 
 import geometries.Intersectable.GeoPoint;
@@ -13,6 +14,10 @@ public class Ray
     final Point p0;
     final Vector dir;
 
+	/**
+	 * A constant for the size of moving first rays for shading rays
+	 * */
+	private static final double DELTA = 0.1;
     /**
      * get the point of the ray
      * @return point
@@ -43,6 +48,20 @@ public class Ray
         else this.dir = dir;
         this.p0 = p0;
     }
+    
+	public Ray(Point head, Vector lightDirection, Vector n) 
+	{
+		if(alignZero(lightDirection.dotProduct(n)) < 0)
+			 p0= head.add(n.scale(-DELTA));
+		else if(alignZero(lightDirection.dotProduct(n)) > 0)
+			 p0= head.add(n.scale(DELTA));
+	else if(isZero(lightDirection.dotProduct(n)))
+			 p0=head;
+		else
+			p0=head;
+		dir=lightDirection;
+		dir.normalize();		
+	}
 
     @Override
     public boolean equals(Object obj) 

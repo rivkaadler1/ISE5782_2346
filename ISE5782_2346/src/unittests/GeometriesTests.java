@@ -17,40 +17,7 @@ import primitives.Ray;
 import primitives.Vector;
 
 class GeometriesTests {
-  /***@Test
-	void testAdd() 
-	{
-		try 
-		{
-			Triangle triangle = new Triangle(new Point(1,0,0),new Point(1,1,0),new Point(1,0,1));
-			Sphere sphere = new Sphere(1,new Point(1, 0, 0));
-			Plane plane = new Plane (new Point(0, 0, 1), new Point(1, 0, 0), new Point(4, 0, 2));
-			//Tube tube = new Tube(1.5, new Ray(new Point(1, 2, 3),new Vector(new Point3D(5, -3, 0))));
-			//Cylinder cylinder = new Cylinder(2, new Ray(new Point(1, 4, -2),new Vector(new Point3(1, 0, 2))), 15);
-			
-			Geometries collection= new Geometries(sphere, triangle, plane);
-			//collection.add(sphere, triangle, plane/*, tube ,cylinder*///);
-			
-			/***collection.add(null); // add 0 things
-			
-			assertEquals("the length of the list is worng", 3, collection.getIntsersectionsPoints().size());
-			Triangle t = new Triangle(new Point(1,8,-6),new Point(1,0,0),new Point(1,0,2));
-			collection.add(t);
-			
-			assertEquals("the length of the list is worng", 4, collection.getIntsersectionPoints().size());
-			
-			***/
-			
-			
-			
-		//}
-		/***catch (Exception e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			fail("dont need throws exceptions!!!");
-		}
-	}***/
+
 
 	@Test
 	void testFindIntsersections() {
