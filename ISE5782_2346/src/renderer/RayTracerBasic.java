@@ -52,8 +52,6 @@ public class RayTracerBasic extends RayTracerBase
 
 		/*𝑰𝑷 = 𝒌𝑨 ∙ 𝑰𝑨 + 𝑰𝑬 + (𝒌𝑫 ∙ |𝒍 ∙ 𝒏| + 𝒌𝑺 ∙ (−𝒗 ∙ 𝒓)^ 𝒏𝒔𝒉)) ∙ 𝑰L*/
 		Color Ie = gp.geometry.getEmission(); 
-		//Color color = Ie.add(calcLocalEffects(gp, ray,k));
-		//return 1 == level ? color : color.add(calcGlobalEffects(gp, ray, level, k , gp.geometry.getNormal(gp.point)));
     	Color color = Ie.add(calcLocalEffects(gp, ray,k));
     	return 1 == level ? color : color.add(calcGlobalEffects(gp, ray, level, k));
     }
@@ -63,10 +61,10 @@ public class RayTracerBasic extends RayTracerBase
     	Color color = Color.BLACK; Vector n = gp.geometry.getNormal(gp.point);
     	Material material = gp.geometry.getMaterial();
     	Double3 kkr = material.KR.product(k);
-    	if (!kkr.lowerThan( MIN_CALC_COLOR_K))//if (kkr > MIN_CALC_COLOR_K)what about =??
+    	if (!kkr.lowerThan( MIN_CALC_COLOR_K))//if (kkr > MIN_CALC_COLOR_K)
     	color = calcGlobalEffect(constructReflectedRay(gp.point, v, n), level, material.KR, kkr);
     	Double3 kkt = material.KT.product(k);
-    	if (!kkt.lowerThan( MIN_CALC_COLOR_K))//if (kkt > MIN_CALC_COLOR_K)what about =??
+    	if (!kkt.lowerThan( MIN_CALC_COLOR_K))//if (kkt > MIN_CALC_COLOR_K
     	color = color.add(
     	calcGlobalEffect(constructRefractedRay(gp.point, v, n), level, material.KT, kkt));
     	return color;
