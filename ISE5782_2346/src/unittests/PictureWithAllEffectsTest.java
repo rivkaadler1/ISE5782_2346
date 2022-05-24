@@ -13,7 +13,7 @@ public class PictureWithAllEffectsTest
 
 
 	@Test
-	public void manyGeometries() 
+	public void lovelyDayPicture() 
 	{
 		Camera camera = new Camera(new Point(0, 100, 10000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //vto,vup
 				.setViewPlaneSize(2500, 2500).setDistance(10000); //height and width
@@ -27,7 +27,7 @@ public class PictureWithAllEffectsTest
 				new Triangle(new Point(0, -1500, -1000), new Point(-250, -800, -1000),new Point(-500, -1500, -2000)).setEmission(new Color(20, 185, 20)).setMaterial(new Material().setKr(0.36)),
 				new Triangle(new Point(500, -1500, -1000), new Point(250, -880, -1000),new Point(0, -1500, -2000)).setEmission(new Color(20, 195, 20)).setMaterial(new Material().setKr(0.36)),
 				new Triangle(new Point(1000, -1500, -1008), new Point(750, -842, -1000),new Point(500, -1500, -2000)).setEmission(new Color(20, 200, 20)).setMaterial(new Material().setKr(0.36)),
-				new Triangle(new Point(1400, -1500, -1095), new Point(1250, -839, -1000),new Point(1050, -1500, -2000)).setEmission(new Color(20, 180, 20)).setMaterial(new Material().setKr(0.36)),
+				new Triangle(new Point(1400, -1500, -1095),new Point(1250, -839, -1000),new Point(1050, -1500, -2000)).setEmission(new Color(20, 180, 20)).setMaterial(new Material().setKr(0.36)),
 				
 				//5 smaller triangles
 				new Triangle(new Point(-750, -1500, -1000), new Point(-1000, -960, -1000),new Point(-1250, -1500, -2000)).setEmission(new Color(20, 200, 20)).setMaterial(new Material().setKr(0.36)),
