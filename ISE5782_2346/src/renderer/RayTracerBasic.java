@@ -43,6 +43,28 @@ public class RayTracerBasic extends RayTracerBase
 		GeoPoint closestPoint = findClosestIntersection(ray);
 		return closestPoint == null ? myScene.background : calcColor(closestPoint, ray);
     }
+    
+	   /**
+  * @param rays List of surrounding rays
+  * @return average color
+  */
+ protected Color traceRay(List<Ray> rays) 
+ {
+ 	if(rays == null)
+ 		return myScene.background;
+     Color color = Color.BLACK;
+     Color bkg = myScene.background;
+     for (Ray ray : rays) 
+     {
+//     	GeoPoint gp = findClosestIntersection(ray);
+//     	color = color.add(gp == null ? bkg : calcColor(gp, ray, MAX_CALC_COLOR_LEVEL, 1d));
+     	color = color.add(traceRay(ray));
+     }
+     color = color.add(myScene.ambientLight.getIntensity());
+     int size = rays.size();
+     return color.reduce(size);
+
+ }
 	/**
 	 * A function that find the most closet point to the ray
 	 * @param ray Ray value
