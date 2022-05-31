@@ -44,20 +44,17 @@ public class RayTracerBasic extends RayTracerBase
 		return closestPoint == null ? myScene.background : calcColor(closestPoint, ray);
     }
     
-	   /**
+ /**
   * @param rays List of surrounding rays
-  * @return average color
+  * @return average color from points in a pixel
   */
- protected Color traceRay(List<Ray> rays) 
+ public Color traceRay(List<Ray> rays) 
  {
  	if(rays == null)
  		return myScene.background;
      Color color = Color.BLACK;
-     Color bkg = myScene.background;
      for (Ray ray : rays) 
      {
-//     	GeoPoint gp = findClosestIntersection(ray);
-//     	color = color.add(gp == null ? bkg : calcColor(gp, ray, MAX_CALC_COLOR_LEVEL, 1d));
      	color = color.add(traceRay(ray));
      }
      color = color.add(myScene.ambientLight.getIntensity());

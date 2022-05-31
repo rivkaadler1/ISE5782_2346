@@ -42,10 +42,8 @@ public class Camera
 		//all the vectors need to be normalize:
 		this.vTo = vTo.normalize();
 		this.vUp = vUp.normalize();
-		vRight = (vTo.crossProduct(vUp)).normalize();
-		
+		vRight = (vTo.crossProduct(vUp)).normalize();		
 		this.p0 = p0;
-
 	}
 	
 	/**
@@ -89,15 +87,15 @@ public class Camera
 			Pc=p0;
 		else
 			Pc=p0.add(vTo.scale(distance));
-		
+		//Ratio (pixel width & height)
 		double Ry= height/nY;
 		double Rx=width/nX;
-		double Yi=(i-(nY-1)/2d)*Ry;
-		double Xj=(j-(nX-1)/2d)*Rx;
+		double Yi=(i-(nY-1)/2d)*Ry;//for calculating the center point
+		double Xj=(j-(nX-1)/2d)*Rx;//for calculating the center point
 		
 		if(isZero(Xj) && isZero(Yi))
 			return new Ray (p0, Pc.subtract(p0));
-		
+		//Pixel[i,j] center
 		Point Pij = Pc;
 		
 		if(!isZero(Xj))
@@ -205,13 +203,13 @@ public class Camera
 	}
 	
 	/**
-	 * A seter function for parameter rayTracer
-	 * this function return the object - this for builder pattern
-	 * @param rayTracer RayTracerBase value
-	 * */
+	 * setter for number of rays
+	 * @param numOfRays
+	 * @return this class-a builder pattern
+	 */
 	public Camera setNumOfRays(int numOfRays)
 	{
-		if(numOfRays == 0)
+		if(numOfRays <= 0)
 			this.numOfRays=1;
 		else
 		 this.numOfRays = numOfRays;
@@ -219,7 +217,7 @@ public class Camera
 	}
 	
 	/**
-	 * this function  creates the picture
+	 * this function  renders the picture
 	 * @throws MissingResourceException
 	 * @throws IllegalArgumentException
 	 */
@@ -245,8 +243,7 @@ public class Camera
 			{
 				if(numOfRays == 1 || numOfRays == 0)
 				{
-					Ray ray = constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i);
-					Color rayColor = rayTracer.traceRay(ray);
+					Color rayColor=castRay(imageWriter.getNx(), imageWriter.getNy(), j, i);
 					imageWriter.writePixel(j, i, rayColor); 
 				}
 				else
@@ -259,46 +256,35 @@ public class Camera
 			}
 		}
        }
-
-       /*** int nX=imageWriter.getNx();
-        int nY=imageWriter.getNy();
-        
-	    for (int i= 0; i< nX; i++)
-		{
-			for (int j = 0; j < nY; j++)	
-			{
-				imageWriter.writePixel(j, i, castRay(nX,nY,j,i));
-		   }
-			
-	     }
-       }**/
 	   catch(MissingResourceException e)
        {
 	    	throw new MissingResourceException("No implemented yet",e.getClassName(),e.getKey());
        }
        return this;
-}
-	public List<Ray> constructBeamThroughPixel (int nX, int nY, int j, int i, int raysAmount)
-	{
-		int numOfRays = (int)Math.floor(Math.sqrt(raysAmount)); //num of rays in each row or column
-		
+   }
+	
+	/**
+	 * 
+	 * @param nX the amount of horizontal pixels
+	 * @param nY the amount of vertical pixels
+	 * @param j the row of a pixel
+	 * @param i the column of a pixel
+	 * @param raysAmount
+	 * @return list of rays 
+	 */
+   public List<Ray> constructBeamThroughPixel (int nX, int nY, int j, int i, int raysAmount)
+   {
+		int numOfRays = (int)Math.floor(Math.sqrt(raysAmount)); //num of rays in each row or column		
 		if (numOfRays==1) 
 			return List.of(constructRayThroughPixel(nX, nY, j, i));
-		Point Pc;
-		if (isZero(distance))
-			Pc=p0;
-		else
-			Pc=p0.add(vTo.scale(distance));
-		
+		//Ratio (pixel width & height)
 		double Ry= height/nY;
 		double Rx=width/nX;
 		double Yi=(i-(nY-1)/2d)*Ry;
-		double Xj=(j-(nX-1)/2d)*Rx;
-//        
+		double Xj=(j-(nX-1)/2d)*Rx;      
         double PRy = Ry / numOfRays; //height distance between each ray
-        double PRx = Rx / numOfRays; //width distance between each ray
-//        
-	      //The distance between the screen and the camera cannot be 0
+        double PRx = Rx / numOfRays; //width distance between each ray       
+	    //The distance between the view plane and the camera cannot be 0
         if (isZero(distance))
         {
             throw new IllegalArgumentException("distance cannot be 0");
@@ -306,20 +292,20 @@ public class Camera
 
         List<Ray> sampleRays = new ArrayList<>();
 
-
-        for (int row = 0; row < numOfRays; ++row) 
-        {//foreach place in the pixel grid
-            for (int column = 0; column < numOfRays; ++column)
+        //for each pixel in the pixels grid
+        for (int i1 = 0; i1 < numOfRays; ++i1) 
+        {
+            for (int j1 = 0; j1< numOfRays; ++j1)
             {
-                sampleRays.add(constructRaysThroughPixel(PRy,PRx,Yi, Xj, row, column));//add the ray
+                sampleRays.add(constructRaysThroughPixel(PRy,PRx,Yi, Xj, i1, j1));//add the ray
             }
         }
         sampleRays.add(constructRayThroughPixel(nX, nY, j, i));//add the center screen ray
         return sampleRays;
-	}
+   }
 	
 	 /**
-     * In this function we treat each pixel like a little screen of its own and divide it to smaller "pixels".
+     * the function treats each pixel like a little screen of its own and divide it to smaller "pixels".
      * Through each one we construct a ray. This function is similar to ConstructRayThroughPixel.
      * @param Ry height of each grid block we divided the pixel into
      * @param Rx width of each grid block we divided the pixel into
@@ -327,7 +313,7 @@ public class Camera
      * @param xj distance of original pixel from (0,0) on X axis
      * @param j j coordinate of small "pixel"
      * @param i i coordinate of small "pixel"
-     * @param distance distance of screen from camera
+     * @param distance distance of camera from the view plane
      * @return beam of rays through pixel
      */
     private Ray constructRaysThroughPixel(double Ry,double Rx, double yi, double xj, int j, int i)

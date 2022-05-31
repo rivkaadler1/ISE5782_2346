@@ -32,7 +32,11 @@ public abstract class RayTracerBase {
 	 * @return Color
 	 *  */
 	public abstract Color traceRay(Ray ray) throws IllegalArgumentException ;
-	
-	protected abstract Color traceRay(List<Ray> rays);//maybe public
+	/**
+	 * function that traces rays to a pixel calculates the color in each target point and returns the everage color
+	 * @param rays list of rays
+	 * @return Color
+	 */
+	public abstract Color traceRay(List<Ray> rays);
 
 }
