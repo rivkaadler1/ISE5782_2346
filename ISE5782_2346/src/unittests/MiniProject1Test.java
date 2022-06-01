@@ -20,12 +20,9 @@ import scene.Scene;
 public class MiniProject1Test {
 	private Scene scene = new Scene("Test scene");
 
-		/**
-		 * Produce a picture of a two triangles lighted by a spot light with a partially
-		 * transparent Sphere producing partial shadow
-		 */
+
 		@Test
-		public void trianglesTransparentSphere() 
+		public void sphereBefore() 
 		{
 			Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
 					.setViewPlaneSize(200, 200).setDistance(1000);
@@ -34,13 +31,13 @@ public class MiniProject1Test {
 		
 			scene.geometries.add( //
 					new Sphere(80,new Point(0, 0, 0)) //
-							.setEmission(new Color(java.awt.Color.yellow)) //
+							.setEmission(new Color(255,105,180)) //
 							.setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30).setKt(0.6)));
 
 			scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point(60, 50, 0), new Vector(0, 0, -1)) //
 					.setKl(4E-5).setKq(2E-7));
 
-			ImageWriter imageWriter = new ImageWriter("miniproject1-from", 600, 600);
+			ImageWriter imageWriter = new ImageWriter("miniproject1-before", 600, 600);
 			
 					camera.setImageWriter(imageWriter) //
 					.setRayTracer(new RayTracerBasic(scene))
@@ -51,7 +48,7 @@ public class MiniProject1Test {
 		}
 		
 		@Test
-		public void trianglesTransparentSphere2() 
+		public void sphereAfter() 
 		{
 			int numOfRays=144;
 			Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
@@ -61,7 +58,7 @@ public class MiniProject1Test {
 
 			scene.geometries.add( //
 					new Sphere(80,new Point(0, 0, 0)) //
-					.setEmission(new Color(java.awt.Color.yellow)) //
+					.setEmission(new Color(255,105,180)) //
 					.setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30).setKt(0.6)));
 
 			scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point(60, 50, 0), new Vector(0, 0, -1)) //

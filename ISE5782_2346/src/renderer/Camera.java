@@ -300,7 +300,7 @@ public class Camera
                 sampleRays.add(constructRaysThroughPixel(PRy,PRx,Yi, Xj, i1, j1));//add the ray
             }
         }
-        sampleRays.add(constructRayThroughPixel(nX, nY, j, i));//add the center screen ray
+        sampleRays.add(constructRayThroughPixel(nX, nY, j, i));//add the center  ray to pixel
         return sampleRays;
    }
 	
