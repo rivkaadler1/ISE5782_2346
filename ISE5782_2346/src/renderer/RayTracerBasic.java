@@ -1,12 +1,9 @@
 package renderer;
 import static primitives.Util.*;
-import geometries.Intersectable;
 import lighting.LightSource;
 import primitives.*;
 import scene.Scene;
 import geometries.Intersectable.GeoPoint;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import static primitives.Util.alignZero;
@@ -157,7 +154,14 @@ public class RayTracerBasic extends RayTracerBase
     	calcGlobalEffect(constructRefractedRay(gp.point, v, n), level, material.KT, kkt));
     	return color;
     }
-    
+    /**
+     * 
+     * @param ray
+     * @param level
+     * @param kx
+     * @param kkx
+     * @return
+     */
     private Color calcGlobalEffect(Ray ray, int level, Double3 kx, Double3 kkx) 
     {
     	GeoPoint gp = findClosestIntersection (ray);
