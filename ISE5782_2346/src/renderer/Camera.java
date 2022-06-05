@@ -111,9 +111,6 @@ public class Camera
 		return new Ray(p0, Vij);
 
 	}
-	
-	
-
 
 	/**
 	 * Getter for p0
@@ -223,6 +220,7 @@ public class Camera
 	 */
 	public Camera renderImage() throws MissingResourceException, IllegalArgumentException
 	{
+	   Color rayColor;
        try 
        {
 		if (imageWriter == null)
@@ -243,16 +241,13 @@ public class Camera
 			{
 				if(numOfRays == 1 || numOfRays == 0)
 				{
-					Color rayColor=castRay(imageWriter.getNx(), imageWriter.getNy(), j, i);
-					imageWriter.writePixel(j, i, rayColor); 
+					rayColor=castRay(imageWriter.getNx(), imageWriter.getNy(), j, i); 
 				}
 				else
 				{	
-					List<Ray> rays = constructBeamThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i,numOfRays);
-					Color rayColor = rayTracer.traceRay(rays);
-					imageWriter.writePixel(j, i, rayColor); 
+					rayColor=castRay(imageWriter.getNx(), imageWriter.getNy(), j, i,numOfRays);					
 				}
-				
+				imageWriter.writePixel(j, i, rayColor); 
 			}
 		}
        }
@@ -351,6 +346,23 @@ public class Camera
 		 Ray ray = constructRayThroughPixel(nX, nY, j, i);
 		 Color color=rayTracer.traceRay(ray);
 		 return color;
+	 }
+	 
+	 /**
+	  * Cast rays from camera in order to color a pixel
+	  * @param nX nX resolution on X axis (number of pixels in row)
+	  * @param nY nY resolution on Y axis (number of pixels in column)
+	  * @param j pixel's column number (pixel index in row)
+	  * @param i pixel's row number (pixel index in column)
+	  * @param numOfRays number of the rays from the camera to the pixel
+	  * @return color -the average color from all the rays
+	  */
+	 private Color castRay(int nX,int nY,int j,int i,int numOfRays)
+	 {
+		 List<Ray> rays = constructBeamThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i,numOfRays);
+		 Color color = rayTracer.traceRay(rays);
+		 return color;
+			
 	 }
 	 
 	/**
