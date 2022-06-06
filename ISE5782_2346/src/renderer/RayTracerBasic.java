@@ -57,8 +57,8 @@ public class RayTracerBasic extends RayTracerBase
      color = color.add(myScene.ambientLight.getIntensity());
      int size = rays.size();
      return color.reduce(size);
-
- }
+   }
+ 
 	/**
 	 * A function that find the most closet point to the ray
 	 * @param ray Ray value
@@ -71,6 +71,7 @@ public class RayTracerBasic extends RayTracerBase
 			return  null;
 		return ray.findClosestGeoPoint(intersections);
 	}
+	
     /**
      * calculates the color of a geopoint 
      * @param gp geopoint
@@ -82,13 +83,14 @@ public class RayTracerBasic extends RayTracerBase
     	return calcColor(gp, ray, MAX_CALC_COLOR_LEVEL, new Double3(INITIAL_K))
     			.add(myScene.ambientLight.getIntensity());
     }
+    
     /**
-     * calcualulate the color with all its parameters
-     * @param gp
-     * @param ray
-     * @param level
-     * @param k
-     * @return
+     * calculates the color with all its parameters
+     * @param gp geometry
+     * @param ray the ray to the geometry
+     * @param level for the recursive calculation
+     * @param k  for the recursive calculation
+     * @return color of a pixel
      */
     private Color calcColor(GeoPoint gp, Ray ray, int level, Double3 k)
     {

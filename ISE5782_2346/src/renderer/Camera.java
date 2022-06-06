@@ -245,7 +245,7 @@ public class Camera
 				}
 				else
 				{	
-					rayColor=castRay(imageWriter.getNx(), imageWriter.getNy(), j, i,numOfRays);					
+					rayColor=castRays(imageWriter.getNx(), imageWriter.getNy(), j, i,numOfRays);					
 				}
 				imageWriter.writePixel(j, i, rayColor); 
 			}
@@ -357,7 +357,7 @@ public class Camera
 	  * @param numOfRays number of the rays from the camera to the pixel
 	  * @return color -the average color from all the rays
 	  */
-	 private Color castRay(int nX,int nY,int j,int i,int numOfRays)
+	 private Color castRays(int nX,int nY,int j,int i,int numOfRays)
 	 {
 		 List<Ray> rays = constructBeamThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i,numOfRays);
 		 Color color = rayTracer.traceRay(rays);
