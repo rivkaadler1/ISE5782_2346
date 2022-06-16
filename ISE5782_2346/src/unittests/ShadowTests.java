@@ -17,13 +17,13 @@ import scene.Scene;
  * @author Dan
  */
 public class ShadowTests {
-	private Intersectable sphere = new Sphere(60d, new Point(0, 0, -200)) //
+	private Borderable sphere = new Sphere(60d, new Point(0, 0, -200)) //
 			.setEmission(new Color(BLUE)) //
 			.setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30));
 	private Material trMaterial = new Material().setKd(0.5).setKs(0.5).setShininess(30);
 
 	private Scene scene = new Scene("Test scene");
-	private Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+	private Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
 			.setViewPlaneSize(200, 200).setDistance(1000) //
 			.setRayTracer(new RayTracerBasic(scene));
 

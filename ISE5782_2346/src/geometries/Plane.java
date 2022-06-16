@@ -1,7 +1,6 @@
 
 package geometries;
 import static primitives.Util.*;
-import static geometries.Intersectable.GeoPoint;
 import java.util.List;
 
 import primitives.Point;
@@ -71,7 +70,8 @@ public class Plane extends Geometry
 
 
 	@Override
-	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray)throws IllegalArgumentException  {
+	protected List<GeoPoint> findGeoIntersectionsParticular(Ray ray)  
+	{
 		double nv = normal.dotProduct(ray.getDir());
 		if (isZero(nv))
 		{
@@ -82,7 +82,6 @@ public class Plane extends Geometry
 		{
 			Vector pSubtractP0 = p0.subtract(ray.getP0());
 			double t = alignZero((normal.dotProduct(pSubtractP0))/nv);
-
 			if(t <= 0)
 			{
 				return null;
@@ -94,5 +93,24 @@ public class Plane extends Geometry
 			return null;
 		}
 	}
+	
+	@Override
+	protected void findMinMaxParticular() 
+	{
+		 minX= Double.NEGATIVE_INFINITY;
+		 minY= Double.NEGATIVE_INFINITY;
+		 minZ= Double.NEGATIVE_INFINITY;
+	     
+		 maxX = Double.POSITIVE_INFINITY;
+		 maxY = Double.POSITIVE_INFINITY;
+		 maxZ =  Double.POSITIVE_INFINITY;		
+	}
+
+	@Override
+	public Point getPositionPoint() {
+		return p0;
+	}
+
+
 }
 

@@ -76,5 +76,23 @@ public class Tube extends Geometry
 		return null;
 	}
 
+	@Override
+	public Point getPositionPoint() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void findMinMaxParticular() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<GeoPoint> findGeoIntersectionsParticular(Ray ray) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

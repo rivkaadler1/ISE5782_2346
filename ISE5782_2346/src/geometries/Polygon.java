@@ -96,7 +96,8 @@ public class Polygon extends Geometry
 
 
 	@Override
-	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray)throws IllegalArgumentException  {
+	protected List<GeoPoint> findGeoIntersectionsParticular(Ray ray)
+	{
 		List<GeoPoint> rayPoints = plane.findGeoIntersections(ray);
 		if (rayPoints == null)
 			return null;
@@ -139,10 +140,40 @@ public class Polygon extends Geometry
 		if (countPositive != normalsList.size() /*all normals in the positive side*/ &&countNegative != 0/* all normals in the negative side*/)
 		{
 			return null; //there is no instruction point
-		}
-		
-
-		return rayPoints;
-	
+		}		
+		return rayPoints;	
 	}
+	
+	@Override
+	protected void findMinMaxParticular() 
+	{
+		minX = Double.POSITIVE_INFINITY;
+		maxX = Double.NEGATIVE_INFINITY;
+		minY = Double.POSITIVE_INFINITY;
+		maxY = Double.NEGATIVE_INFINITY;
+		minZ = Double.POSITIVE_INFINITY;
+		maxZ = Double.NEGATIVE_INFINITY;
+		// Adjust the size of the box according to the vertices
+		for (Point v : vertices) {
+			if (v.getX() < minX)
+				minX = v.getX();
+			if (v.getX() > maxX)
+				maxX = v.getX();
+			if (v.getY() < minY)
+				minY = v.getY();
+			if (v.getY() > maxY)
+				maxY = v.getY();
+			if (v.getZ() < minZ)
+				minZ = v.getZ();
+			if (v.getZ() > maxZ)
+				maxZ = v.getZ();
+		}
+	}
+
+	@Override
+	public Point getPositionPoint() {
+			return vertices.get(0);
+	}
+
+
 }

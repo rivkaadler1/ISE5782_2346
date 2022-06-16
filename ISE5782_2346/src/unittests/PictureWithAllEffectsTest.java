@@ -59,12 +59,8 @@ public class PictureWithAllEffectsTest
 		scene.lights.add(new DirectionalLight(new Color(990, 869, 100), new Vector(1000, 850, 950)));
 		scene.lights.add(new SpotLight(new Color(720, 400, 400), new Point(-200, -200, -200), new Vector(1, 10, -4)) 
 				.setKl(0.00001).setKq(0.000005));
-         //
-		//scene.lights.add(new SpotLight(new Color(850,500,0),new Point(-1000,-1000,-1000),new Vector(100,5,-1000)).setKl(0.00001).setKq(0.000005));
 		scene.lights.add(new PointLight(new Color(500, 300, 0), new Point(700, 700, 950))
 				.setKl(0.00001).setKq(0.000001));
-		//scene.lights.add(new SpotLight(new Color(500, 300, 0), new Point(-80, -80, 80), new Vector(1, 1, -2)) //
-			//	.setKl(0.00001).setKq(0.000000001));
 		scene.lights.add(new PointLight(new Color(100, 300, 0), new Point(-1400, -1400, 1000))
 				.setKl(0.00001).setKq(0.000001));
 		camera.setImageWriter(new ImageWriter("lovely day", 500, 500))
@@ -95,7 +91,7 @@ public class PictureWithAllEffectsTest
 				.setEmission(new Color(0,0,100)) //
 				.setMaterial(new Material().setKd(0.6).setKs(0.9).setShininess(1000).setKt(0).setKr(0.2)),
 				new Sphere(10,new Point(10, 30, -100)) //the red sphere
-				.setEmission(new Color(java.awt.Color.RED)) //
+				.setEmission(new Color(java.awt.Color.yellow)) //
 				.setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20).setKt(0).setKr(0.8)),
 				new Triangle(new Point(1500, -1500, -1500), new Point(-1500, 1500, -1500),//the triangle
 				new Point(-1500, -1500, -2000))
@@ -107,10 +103,8 @@ public class PictureWithAllEffectsTest
 		scene.lights.add(new PointLight(new Color(300, 500, 500), new Point(-50, -50, 50))//
 				.setKl(0.00001).setKq(0.000001));
 		
-		ImageWriter imageWriter = new ImageWriter("ourPicture", 600, 600);
-	
+		ImageWriter imageWriter = new ImageWriter("ourPicture", 600, 600);	
 				camera.setImageWriter(imageWriter) 
-
 				.setRayTracer(new RayTracerBasic(scene)).setNumOfRays(81)
 				.renderImage()
 				.writeToImage();

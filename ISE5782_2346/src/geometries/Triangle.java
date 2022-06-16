@@ -1,14 +1,11 @@
 package geometries;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import geometries.Intersectable.GeoPoint;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Util;
 import primitives.Vector;
-import static primitives.Util.*;
 
 /**
  * Class Triangle is the basic class representing a triangle of Euclidean geometry extends polygon
@@ -30,14 +27,14 @@ public class Triangle extends Polygon
     }
     
     @Override
-	public List<GeoPoint> findGeoIntersectionsHelper (Ray ray)
+	public List<GeoPoint> findGeoIntersectionsParticular (Ray ray)
 	{
-		List<GeoPoint> rayPoints = plane.findGeoIntersectionsHelper(ray);
+		List<GeoPoint> rayPoints = plane.findGeoIntersectionsParticular(ray);
 		if (rayPoints == null)
 			return null;
-		for(GeoPoint P: rayPoints )
+		for(GeoPoint p: rayPoints )
 		{
-			P.geometry=this;
+			p.geometry=this;
 		}
 		
 		//check if the point in out or on the triangle:
@@ -64,6 +61,7 @@ public class Triangle extends Polygon
 			return null; //there is no instruction point
 		return null;
 	}
+    
 }
 	
 

@@ -25,7 +25,9 @@ public class Camera
 	private ImageWriter imageWriter;
 	private RayTracerBase rayTracer;
 	private int numOfRays;
-
+    private int threadsCount = 0;
+	private static final int SPARE_THREADS = 3; // Spare threads if trying to use all the cores
+    private double debugPrint=0;
 	/**
 	 * This constructor creates new camera
 	 * @author  sarit silverstone and rivki adler
@@ -37,8 +39,7 @@ public class Camera
 	 */
 	public Camera(Point p0, Vector vTo, Vector vUp) throws IllegalArgumentException {
 		if(!isZero(vTo.dotProduct(vUp))) // if vTo doesn't orthogonal to vUp
-			throw new IllegalArgumentException("vUp doesnt ortogonal to vTo");
-		
+			throw new IllegalArgumentException("vUp doesnt ortogonal to vTo");		
 		//all the vectors need to be normalize:
 		this.vTo = vTo.normalize();
 		this.vUp = vUp.normalize();
@@ -214,13 +215,42 @@ public class Camera
 	}
 	
 	/**
+	 * Set multi-threading <br>
+	 * - if the parameter is 0 - number of cores less 2 is taken
+	 * @param threads number of threads
+	 * @return this Camera 
+	 */
+	public Camera setMultithreading(int threads)
+	{
+		if (threads < 0)
+			throw new IllegalArgumentException("Multithreading parameter must be 0 or higher");
+		if (threads != 0)
+			this.threadsCount = threads;
+		else //if threads=0
+		{
+			int cores = Runtime.getRuntime().availableProcessors() - SPARE_THREADS;
+			this.threadsCount = cores <= 2 ? 1 : cores;
+		}
+		return this;
+	}
+
+	/**
+	 * Set debug printing on
+	 * @return this Camera
+	 */
+	public Camera setDebugPrint(double debugPrint)
+	{
+		this.debugPrint=debugPrint;
+		return this;
+	}
+	
+	/**
 	 * this function  renders the picture
 	 * @throws MissingResourceException
 	 * @throws IllegalArgumentException
 	 */
 	public Camera renderImage() throws MissingResourceException, IllegalArgumentException
 	{
-	   Color rayColor;
        try 
        {
 		if (imageWriter == null)
@@ -234,22 +264,26 @@ public class Camera
 		if (vTo == null) 
 	     	throw new MissingResourceException("this function must have values in all the fileds", "Vector", "vTo");
 		if (vRight == null) 
-	     	throw new MissingResourceException("this function must have values in all the fileds", "Vector", "vRight");
-		for (int i = 0; i < imageWriter.getNx(); i++)
+	     	throw new MissingResourceException("this function must have values in all the fileds", "Vector", "vRight");		
+		if (threadsCount == 0)
 		{
-			for (int j = 0; j < imageWriter.getNy(); j++)	
-			{
+		   for (int i = 0; i < imageWriter.getNx(); i++)
+		   {
+			 for (int j = 0; j < imageWriter.getNy(); j++)	
+			 {
 				if(numOfRays == 1 || numOfRays == 0)
 				{
-					rayColor=castRay(imageWriter.getNx(), imageWriter.getNy(), j, i); 
+					castRay(imageWriter.getNx(), imageWriter.getNy(), j, i); 
 				}
 				else
 				{	
-					rayColor=castRays(imageWriter.getNx(), imageWriter.getNy(), j, i,numOfRays);					
+					castRays(imageWriter.getNx(), imageWriter.getNy(), j, i,numOfRays);					
 				}
-				imageWriter.writePixel(j, i, rayColor); 
 			}
-		}
+		  }
+		}		
+		else
+			renderImageThreaded();
        }
 	   catch(MissingResourceException e)
        {
@@ -258,6 +292,40 @@ public class Camera
        return this;
    }
 	
+	/**
+	 * This function renders image's pixel color map from the scene 
+	 * with multi-threading
+	 */
+	private void renderImageThreaded() 
+	{
+		final int nX = imageWriter.getNx();//maxRows
+		final int nY = imageWriter.getNy();//maxCols
+		Pixel.initialize(nY, nX, debugPrint);
+		boolean flag=true;
+		if(numOfRays == 1 || numOfRays == 0)//If not used in the improvement of a mini-project1
+		    flag=false;
+		if (flag)
+		{
+		  while (threadsCount-- > 0) 
+		  {
+		    new Thread(() -> {
+		    for (Pixel pixel = new Pixel(); pixel.nextPixel(); Pixel.pixelDone())
+			    castRays(nX, nY, pixel.col, pixel.row,numOfRays);
+		    }).start();
+		   }
+		}
+		else
+		{
+			 while (threadsCount-- > 0) 
+			 {
+			   new Thread(() -> {
+			   for (Pixel pixel = new Pixel(); pixel.nextPixel(); Pixel.pixelDone())
+				   castRay(nX, nY, pixel.col, pixel.row);
+			   }).start();
+			  }
+		}
+		Pixel.waitToFinish();
+	}
 	/**
 	 * 
 	 * @param nX the amount of horizontal pixels
@@ -341,11 +409,11 @@ public class Camera
 	 * @param j pixel's column number (pixel index in row)
 	 * @param i pixel's row number (pixel index in column)
 	 */
-	 private Color castRay(int nX,int nY,int j,int i)
+	 private void castRay(int nX,int nY,int j,int i)
 	 {
 		 Ray ray = constructRayThroughPixel(nX, nY, j, i);
 		 Color color=rayTracer.traceRay(ray);
-		 return color;
+		 imageWriter.writePixel(j, i, color); 
 	 }
 	 
 	 /**
@@ -355,15 +423,14 @@ public class Camera
 	  * @param j pixel's column number (pixel index in row)
 	  * @param i pixel's row number (pixel index in column)
 	  * @param numOfRays number of the rays from the camera to the pixel
-	  * @return color -the average color from all the rays
 	  */
-	 private Color castRays(int nX,int nY,int j,int i,int numOfRays)
+	 private void castRays(int nX,int nY,int j,int i,int numOfRays)
 	 {
 		 List<Ray> rays = constructBeamThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i,numOfRays);
 		 Color color = rayTracer.traceRay(rays);
-		 return color;
-			
+		 imageWriter.writePixel(j, i, color); 		
 	 }
+
 	 
 	/**
 	 * A function that creates a grid of lines
@@ -371,7 +438,7 @@ public class Camera
 	 * @param interval int value
 	 * @param color Color value
 	 * */
-	public void printGrid(int interval, Color color)
+	public Camera printGrid(int interval, Color color)
 	{
 		if (imageWriter == null)
 			throw new MissingResourceException("this function must have values in all the fileds", "ImageWriter", "i");
@@ -385,7 +452,7 @@ public class Camera
 				    imageWriter.writePixel(i1, j, color); 
 			}
 		}
-
+      return this; 
 	}
 	/**
 	 * A function that finally creates the image.
@@ -398,7 +465,6 @@ public class Camera
 			throw new MissingResourceException("this function must have values in all the fileds", "ImageWriter", "imageWriter");
 		
 		imageWriter.writeToImage();
-	}
-
+	}  
 	
 }

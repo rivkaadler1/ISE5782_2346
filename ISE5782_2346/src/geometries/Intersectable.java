@@ -12,14 +12,9 @@ import primitives.Ray;
  * @author sarit silverstone and Rivki Adler
  */
 public abstract class Intersectable{
-	/**
-	 * finds all the intersection points with geometry
-	 * @param ray
-	 * @return list of intersection points
-	 */
+
 	/**
 	 * Static Internal Auxiliary Department (as a completely passive data structure - PDS)
-	 * 
 	 * @author sarit silverstone and rivki adler
 	 * @param geometry Geometry value
 	 * @param point Point3D value
@@ -57,15 +52,39 @@ public abstract class Intersectable{
 
 	}
 	
-	public List<Point> findIntersections(Ray ray) {
+	/**
+	 * finds all the intersection points with geometry
+	 * @param ray
+	 * @return list of intersection points
+	 */
+	public List<Point> findIntersections(Ray ray) 
+	{
 	    var geoList = findGeoIntersections(ray);
 	    return geoList == null ? null
 	                           : geoList.stream().map(gp -> gp.point).toList();
 	}
-
-	protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
-    public List<GeoPoint> findGeoIntersections (Ray ray){
+	
+   /**
+    * the main function for finding  the intersection points with geometry
+    * @param ray
+    * @return list of Geopoints that the ray intersects
+    */
+    public List<GeoPoint> findGeoIntersections (Ray ray)
+    {
 		return findGeoIntersectionsHelper(ray);
     }
-
+    
+	/**
+	 * helper function for findgeointersections function ,the function checks if the functionality of borderable is on and calls the findGeoIntersectionsParticular function
+	 * @param ray
+	 * @return list of Geopoints that the ray intersects
+	 */
+	protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
+    
+	/**
+	 * finds all the intersection points with geometry
+	 * @param ray
+	 * @return list of Geopoints that the ray intersects
+	 */
+	protected abstract  List<GeoPoint> findGeoIntersectionsParticular(Ray ray);
 }

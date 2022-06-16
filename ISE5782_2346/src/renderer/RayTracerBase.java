@@ -1,6 +1,7 @@
 package renderer;
 import java.util.List;
 
+import geometries.Borderable;
 import primitives.Color;
 import primitives.Ray;
 import scene.Scene;
@@ -23,6 +24,15 @@ public abstract class RayTracerBase {
 		this.myScene=myscene;
 	}
 	
+	/**
+	 * Setter for the functionality of Conservative Bounding Region/Bounding Volume Hierarchy
+	 * @return this
+	 */
+	public  RayTracerBase setBVH()
+	{
+		Borderable.setEnabled();
+		return this;
+	}
 	/**
 	 * Statement of an abstract function that calculates the color for the nearest intersection point, 
 	 * if no intersection points are returned the color of the background	

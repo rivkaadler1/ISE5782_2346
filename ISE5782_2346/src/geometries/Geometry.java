@@ -9,12 +9,10 @@ import primitives.Vector;
  * extends intersectable
  * @author Sarit Silverstone and Rivki Adler
  */
-public abstract class Geometry extends Intersectable{
+public abstract class Geometry extends Borderable 
+{
 	protected Color emission = Color.BLACK;
-	private Material material=new Material();
-	    
-
-	
+	private Material material=new Material();	
 
 	/**
 	 * A function that calculates and returns the normal of a plane of the geometry
@@ -63,4 +61,6 @@ public abstract class Geometry extends Intersectable{
 		this.material = material;
 		return this;
 	}
+	
+	public abstract Point getPositionPoint();
 }

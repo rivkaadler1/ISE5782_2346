@@ -45,8 +45,8 @@ public class RayTracerBasic extends RayTracerBase
   * @param rays List of surrounding rays
   * @return average color from points in a pixel
   */
- public Color traceRay(List<Ray> rays) 
- {
+  public Color traceRay(List<Ray> rays) 
+  {
  	if(rays == null)
  		return myScene.background;
      Color color = Color.BLACK;
