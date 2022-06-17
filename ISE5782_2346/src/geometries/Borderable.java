@@ -13,7 +13,10 @@ import java.util.List;
 public abstract class Borderable extends Intersectable 
 {
     static protected boolean borderEnabled = false;
-
+    
+    /**
+     *setter for the functionality of borderable
+     */
     public static void setEnabled() 
     {
         borderEnabled = true;

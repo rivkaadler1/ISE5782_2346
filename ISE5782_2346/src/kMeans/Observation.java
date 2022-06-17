@@ -4,20 +4,28 @@ import java.util.Random;
 
 import geometries.*;
 import primitives.*;
-
+/**
+ * Class Observation represents an observation in the k means algorithm
+ * @author Sarit Silverstone & Rivki Adler
+ */
 public class Observation 
 {
 	private Geometry geometry;
     private Point PositionPoint;
     private int clusterNumber = 0;
-
+    
+    /**
+     * Constructor that initializes the fields geometry & positionpoint
+     * @param g geometry
+     */
     public Observation(Geometry g)
     {
         this.geometry=g;
         this.PositionPoint=g.getPositionPoint();
     }
-   
-    /**
+  
+
+	/**
 	 * @return the PositionPoint
 	 */
 	public Point getPositionPoint() {
@@ -55,7 +63,7 @@ public class Observation
 	}
 
   /**
-  * calculates the distance between an obsevation and one of the k means
+  * calculates the distance between an observation and one of the k means
    * @param o -observation
    * @param mean -one of the k means
    * @return the distance between o and mean

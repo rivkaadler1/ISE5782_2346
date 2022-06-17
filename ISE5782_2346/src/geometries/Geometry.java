@@ -6,7 +6,7 @@ import primitives.Vector;
 
 /**
  * an abstract class for all the geometries that have normal
- * extends intersectable
+ * extends Borderable
  * @author Sarit Silverstone and Rivki Adler
  */
 public abstract class Geometry extends Borderable 
@@ -61,6 +61,9 @@ public abstract class Geometry extends Borderable
 		this.material = material;
 		return this;
 	}
-	
+	/**
+	 * for using k means algorithm
+	 * @return a position point of geometry
+	 */
 	public abstract Point getPositionPoint();
 }

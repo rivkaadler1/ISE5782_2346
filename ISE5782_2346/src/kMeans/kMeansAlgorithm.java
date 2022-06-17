@@ -5,15 +5,23 @@ import java.util.List;
 
 import primitives.Point;
 
+/**
+ * class kMeansAlgorithm-
+ * k-means clustering is a method of vector quantization, originally from signal processing, that aims to partition n observations into k clusters in which
+ *  each observation belongs to the cluster with the nearest mean (cluster centers or cluster centroid) , serving as a prototype of the cluster.
+ * @author Sarit Silverstone & Rivki Adler
+ */
 public class kMeansAlgorithm 
 {
-    //Number of Clusters. This metric should be related to the number of points
     private int NUM_CLUSTERS = 3;    
     private int MAX_ITERATIONS = 100;
 
     private List<Observation> points;
     private List<Cluster> clusters;
     
+    /**
+     * Default constructor
+     */
     public kMeansAlgorithm()
     {
         this.points = new ArrayList<Observation>();
@@ -29,12 +37,14 @@ public class kMeansAlgorithm
 		return clusters;
 	}
 
-	//Initializes the process
+    /**
+     * the function initializes the fields for the algorithm
+     * @param points
+     */
     public void init(List<Observation> points) 
     {
         //add Points
         this.points = points;
-
         //Create Clusters
         //Set random centroids
         for (int i = 0; i < NUM_CLUSTERS; i++) 
@@ -46,7 +56,10 @@ public class kMeansAlgorithm
         }
     }
 
-    //The process to calculate the K Means, with iterating method.
+    /**
+     * this function is implements the algorithm of k means 
+     as described in the class documentation  by calling help functions
+     */
     public void calculate()
     {
         boolean finish = false;
@@ -74,7 +87,10 @@ public class kMeansAlgorithm
             }
         }
     }
-
+    
+    /**
+     * function that clear all the clusters
+     */
     private void clearClusters()
     {
         for(Cluster cluster : clusters) 
@@ -82,24 +98,31 @@ public class kMeansAlgorithm
             cluster.clear();
         }
     }
-
+    
+    /**
+     * function that returns a list of centroids
+     * @return a list of centroids
+     */
     private List<Observation> getCentroids()
     {
         List<Observation> centroids = new ArrayList<Observation>(NUM_CLUSTERS);
         for(Cluster cluster : clusters) 
         {
         	Observation aux = cluster.getCentroid();
-        	Observation point = new Observation(aux.getGeometry());
+        	Observation point = new Observation(aux.getGeometry());//i think it is not necessary
             centroids.add(point);
         }
         return centroids;
     }
 
+    /**
+     * the function Assigns each observation to the cluster with the nearest mean: that with the least squared Euclidean distance.
+     */
     private void assignCluster() 
     {
         double max = Double.MAX_VALUE;
         double min = max; 
-        int cluster = 0;                 
+        int clusterId = 0;                 
         double distance = 0.0; 
 
         for(Observation point : points)
@@ -110,18 +133,20 @@ public class kMeansAlgorithm
                 Cluster c = clusters.get(i);
                 distance = Observation.distance(point, c.getCentroid());
                 if(distance < min)
-                
                 {
                     min = distance;
-                    cluster = i;
+                    clusterId = i;
                 }
             }
-            point.setClusterNumber(cluster);
-            clusters.get(cluster).addPoint(point);
+            point.setClusterNumber(clusterId);
+            clusters.get(clusterId).addPoint(point);
         }
         
     }
-
+      
+    /**
+     * the function calculates the centroids of the clusters by calculating the mean values of the observations
+     */
     private void calculateCentroids() 
     {
         for(Cluster cluster : clusters) 
@@ -129,7 +154,7 @@ public class kMeansAlgorithm
             double sumX = 0;
             double sumY = 0;
             double sumZ = 0;
-            List<Observation> listPoints = cluster.getPoints();
+            List<Observation> listPoints = cluster.getObservations();
             int n_points = listPoints.size();
 
             for(Observation point : listPoints) {
