@@ -10,7 +10,6 @@ import java.util.List;
  */
  public class Cluster 
  {
-
     public List<Observation> observations;
     public Observation centroid;
     public int id;
@@ -19,8 +18,7 @@ import java.util.List;
      * Constructor 
      * @param id the id of the cluster
      */
-    public Cluster(int id) 
-    {
+    public Cluster(int id) {
         this.id = id;
         this.observations = new ArrayList<Observation>();
         this.centroid = null;
@@ -30,19 +28,10 @@ import java.util.List;
      * getter for observations
      * @return the list of observations
      */
-    public List<Observation> getObservations()
-    {
+    public List<Observation> getObservations(){
         return observations;
     }
      
-    /**public void addPoint(List<Observation> points)
-    {
-    	for(Observation p :points)
-    	{
-    		points.add(p);
-    	}
-   /** }
-    
     /**
      * Function that adds observation to observations
      * @param o

@@ -1,6 +1,7 @@
 package kMeans;
 
 import java.util.ArrayList;
+import static primitives.Util.*;
 import java.util.List;
 
 import primitives.Point;
@@ -31,8 +32,7 @@ public class kMeansAlgorithm
     /**
 	 * @return the clusters
 	 */
-	public List<Cluster> getClusters() 
-	{
+	public List<Cluster> getClusters() {
 		
 		return clusters;
 	}
@@ -41,8 +41,7 @@ public class kMeansAlgorithm
      * the function initializes the fields for the algorithm
      * @param points
      */
-    public void init(List<Observation> points) 
-    {
+    public void init(List<Observation> points)  {
         //add Points
         this.points = points;
         //Create Clusters
@@ -60,8 +59,7 @@ public class kMeansAlgorithm
      * this function is implements the algorithm of k means 
      as described in the class documentation  by calling help functions
      */
-    public void calculate()
-    {
+    public void calculate(){
         boolean finish = false;
         int iteration = 0;
         // Add in new data, one at a time, recalculating centroids with each new one. 
@@ -82,7 +80,7 @@ public class kMeansAlgorithm
             {
                 distance += Observation.distance(lastCentroids.get(i),currentCentroids.get(i));
             }
-            if(distance == 0) { //if everything is as before - finish
+            if(alignZero(distance) == 0) { //if everything is as before - finish
                 finish = true;
             }
         }
@@ -91,8 +89,7 @@ public class kMeansAlgorithm
     /**
      * function that clear all the clusters
      */
-    private void clearClusters()
-    {
+    private void clearClusters(){
         for(Cluster cluster : clusters) 
         {
             cluster.clear();
@@ -103,13 +100,12 @@ public class kMeansAlgorithm
      * function that returns a list of centroids
      * @return a list of centroids
      */
-    private List<Observation> getCentroids()
-    {
+    private List<Observation> getCentroids() {
         List<Observation> centroids = new ArrayList<Observation>(NUM_CLUSTERS);
         for(Cluster cluster : clusters) 
         {
         	Observation aux = cluster.getCentroid();
-        	Observation point = new Observation(aux.getGeometry());//i think it is not necessary
+        	Observation point = new Observation(aux.getGeometry());
             centroids.add(point);
         }
         return centroids;
@@ -118,8 +114,7 @@ public class kMeansAlgorithm
     /**
      * the function Assigns each observation to the cluster with the nearest mean: that with the least squared Euclidean distance.
      */
-    private void assignCluster() 
-    {
+    private void assignCluster() {
         double max = Double.MAX_VALUE;
         double min = max; 
         int clusterId = 0;                 
@@ -147,8 +142,7 @@ public class kMeansAlgorithm
     /**
      * the function calculates the centroids of the clusters by calculating the mean values of the observations
      */
-    private void calculateCentroids() 
-    {
+    private void calculateCentroids()  {
         for(Cluster cluster : clusters) 
         {
             double sumX = 0;

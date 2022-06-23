@@ -175,5 +175,4 @@ public class Polygon extends Geometry
 			return vertices.get(0);
 	}
 
-
 }

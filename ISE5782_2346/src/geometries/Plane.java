@@ -111,6 +111,5 @@ public class Plane extends Geometry
 		return p0;
 	}
 
-
 }
 

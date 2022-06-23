@@ -26,22 +26,22 @@ import scene.Scene;
 
 class MiniProject2 {
     private static Geometries square = new Geometries(new Polygon(new Point(0,0,-50),new Point(50,0,-100),new Point(50,50,-150),new Point(0,50,-100))
-            .setEmission(new Color(java.awt.Color.BLUE)) //
+            .setEmission(new Color(java.awt.Color.BLUE)) 
             .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(100)),
             new Polygon(new Point(0,0,-50),new Point(-50,0,-100),new Point(-50,50,-150),new Point(0,50,-100))
-                    .setEmission(new Color(java.awt.Color.BLUE)) //
+                    .setEmission(new Color(java.awt.Color.BLUE)) 
                     .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(100)),
             new Polygon(new Point(0,0,-50),new Point(-50,0,-100),new Point(-50,-50,-150),new Point(0,-50,-100))
-                    .setEmission(new Color(java.awt.Color.BLUE)) //
+                    .setEmission(new Color(java.awt.Color.BLUE)) 
                     .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(100)),
             new Polygon(new Point(0,0,-50),new Point(50,0,-100),new Point(50,-50,-150),new Point(0,-50,-100))
-                    .setEmission(new Color(java.awt.Color.BLUE)) //
+                    .setEmission(new Color(java.awt.Color.BLUE)) 
                     .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(100))
     );
    
 
 
-    private static Geometry triangle1 = new Triangle( //
+    private static Geometry triangle1 = new Triangle( 
             new Point(-150, -150, -150), new Point(150, -150, -150), new Point(75, 75, -150));
     @Test
     public void TestMiniProject2() {
@@ -61,23 +61,23 @@ class MiniProject2 {
             }
         }
         scene1.geometries.add(square,triangle1.setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(300)),
-                new Sphere(50, new Point(0, 0, -50)) //
-                        .setEmission(new Color(java.awt.Color.RED)) //
+                new Sphere(50, new Point(0, 0, -50)) 
+                        .setEmission(new Color(java.awt.Color.RED)) 
                         .setMaterial(new Material().setKd(0.4).setKs(0.3).setShininess(100).setKt(0.3)),
-                new Sphere(25, new Point(0, 0, -50)) //
-                        .setEmission(new Color(java.awt.Color.BLACK)) //
+                new Sphere(25, new Point(0, 0, -50)) 
+                        .setEmission(new Color(java.awt.Color.BLACK)) 
                         .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(100)),
-                new Sphere(20, new Point(50, 0, 0)) //
-                        .setEmission(new Color(java.awt.Color.BLACK)) //
+                new Sphere(20, new Point(50, 0, 0)) 
+                        .setEmission(new Color(java.awt.Color.BLACK)) 
                         .setMaterial(new Material().setKd(0.4).setKs(0.3).setShininess(100).setKt(0.3)),
-                new Sphere(15, new Point(70, 0, 0)) //
-                        .setEmission(new Color(java.awt.Color.RED)) //
+                new Sphere(15, new Point(70, 0, 0)) 
+                        .setEmission(new Color(java.awt.Color.RED)) 
                         .setMaterial(new Material().setKd(0.4).setKs(0.3).setShininess(100).setKt(0.3)),
-                new Sphere(20, new Point(-50, 0, 0)) //
-                        .setEmission(new Color(java.awt.Color.BLACK)) //
+                new Sphere(20, new Point(-50, 0, 0)) 
+                        .setEmission(new Color(java.awt.Color.BLACK)) 
                         .setMaterial(new Material().setKd(0.4).setKs(0.3).setShininess(100).setKt(0.3)),
-                 new Sphere(15, new Point(-70, 0, 0)) //
-                     .setEmission(new Color(java.awt.Color.RED)) //
+                 new Sphere(15, new Point(-70, 0, 0)) 
+                     .setEmission(new Color(java.awt.Color.RED)) 
                      .setMaterial(new Material().setKd(0.4).setKs(0.3).setShininess(100).setKt(0.3)),
                 new Triangle( //
                         new Point(50, 50, 50), new Point(-15, 15, 15), new Point(-75, -75, 150))
@@ -100,7 +100,7 @@ class MiniProject2 {
     public void TestMiniProject2A() {
     	 Scene scene1 = new Scene("Test scene") //
     	            .setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), new Double3(0.15)));
-        Camera camera1 = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+        Camera camera1 = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) 
                 .setViewPlaneSize(200, 200) //
                 .setDistance(1000).setNumOfRays(144).
     			setMultithreading(3).setDebugPrint(0.1);
@@ -109,7 +109,7 @@ class MiniProject2 {
             for (int j = -9; j <=-8; j++) {
                 scene1.geometries.add(
                         new Sphere(5, new Point(i*10,j*10,0))
-                                .setEmission(new Color(java.awt.Color.CYAN)) //
+                                .setEmission(new Color(java.awt.Color.CYAN)) 
                                 .setMaterial(new Material().setKs(0.4).setKd(0.3).setShininess(100).setKt(0.3)));
             }
         }
@@ -119,7 +119,7 @@ class MiniProject2 {
             for (int j = 8; j <=9; j++) {
                 scene1.geometries.add(
                         new Sphere(5, new Point(i*10,j*10,0))
-                                .setEmission(new Color(java.awt.Color.CYAN)) //
+                                .setEmission(new Color(java.awt.Color.CYAN)) 
                                 .setMaterial(new Material().setKs(0.4).setKd(0.3).setShininess(100).setKt(0.3)));
             }
         }
@@ -164,7 +164,7 @@ class MiniProject2 {
     }
     
     @Test
-    public void TestMiniProject2B() {   	
+    public void TestMiniProject2B(){   	
          Camera camera2 = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
                 .setViewPlaneSize(200, 200) //
                 .setDistance(1000).setNumOfRays(144).
@@ -238,7 +238,7 @@ class MiniProject2 {
    	 Scene scene3 = new Scene("Test scene") //
    	            .setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), new Double3(0.15)));
     	
-       Camera camera3 = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+       Camera camera3 = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) 
                 .setViewPlaneSize(200, 200) //
                 .setDistance(1000).setNumOfRays(144).
     			setMultithreading(3).setDebugPrint(0.1);
@@ -248,7 +248,7 @@ class MiniProject2 {
             for (int j = -9; j <=-8; j++) {
                 observations.add(new Observation(
                         new Sphere(5, new Point(i*10,j*10,0))
-                                .setEmission(new Color(java.awt.Color.CYAN)) //
+                                .setEmission(new Color(java.awt.Color.CYAN)) 
                                 .setMaterial(new Material().setKd(0.4).setKs(0.3).setShininess(100).setKt(0.3))));
             }
         }
@@ -257,7 +257,7 @@ class MiniProject2 {
             for (int j =8; j <=9; j++) {
                 observations.add(new Observation(
                         new Sphere(5, new Point(i*10,j*10,0))
-                                .setEmission(new Color(java.awt.Color.CYAN)) //
+                                .setEmission(new Color(java.awt.Color.CYAN)) 
                                 .setMaterial(new Material().setKd(0.4).setKs(0.3).setShininess(100).setKt(0.3))));
             }
         }
@@ -273,36 +273,36 @@ class MiniProject2 {
 
         //the square
         observations.add(new Observation(new Polygon(new Point(0,0,-50),new Point(50,0,-100),new Point(50,50,-150),new Point(0,50,-100))
-                .setEmission(new Color(java.awt.Color.BLUE)) //
+                .setEmission(new Color(java.awt.Color.BLUE)) 
                 .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(100))));
         observations.add(new Observation(new Polygon(new Point(0,0,-50),new Point(-50,0,-100),new Point(-50,50,-150),new Point(0,50,-100))
-                        .setEmission(new Color(java.awt.Color.BLUE)) //
+                        .setEmission(new Color(java.awt.Color.BLUE)) 
                         .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(100))));
         observations.add(new Observation(new Polygon(new Point(0,0,-50),new Point(-50,0,-100),new Point(-50,-50,-150),new Point(0,-50,-100))
-                        .setEmission(new Color(java.awt.Color.BLUE)) //
+                        .setEmission(new Color(java.awt.Color.BLUE)) 
                         .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(100))));
         observations.add(new Observation( new Polygon(new Point(0,0,-50),new Point(50,0,-100),new Point(50,-50,-150),new Point(0,-50,-100))
-                        .setEmission(new Color(java.awt.Color.BLUE)) //
+                        .setEmission(new Color(java.awt.Color.BLUE)) 
                         .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(100))));
 
         
-                observations.add(new Observation(new Sphere(50, new Point(0, 0, -50)) //
-                        .setEmission(new Color(java.awt.Color.RED)) //
+                observations.add(new Observation(new Sphere(50, new Point(0, 0, -50)) 
+                        .setEmission(new Color(java.awt.Color.RED)) 
                         .setMaterial(new Material().setKd(0.4).setKs(0.3).setShininess(100).setKt(0.3))));
-                observations.add(new Observation(new Sphere(25, new Point(0, 0, -50)) //
-                        .setEmission(new Color(java.awt.Color.BLACK)) //
+                observations.add(new Observation(new Sphere(25, new Point(0, 0, -50)) 
+                        .setEmission(new Color(java.awt.Color.BLACK)) 
                         .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(100))));
                 observations.add(new Observation(new Sphere(20, new Point(50, 0, 0)) //
                         .setEmission(new Color(java.awt.Color.BLACK)) //
                         .setMaterial(new Material().setKd(0.4).setKs(0.3).setShininess(100).setKt(0.3))));
-                observations.add(new Observation(new Sphere(15, new Point(70, 0, 0)) //
-                        .setEmission(new Color(java.awt.Color.RED)) //
+                observations.add(new Observation(new Sphere(15, new Point(70, 0, 0)) 
+                        .setEmission(new Color(java.awt.Color.RED)) 
                         .setMaterial(new Material().setKd(0.4).setKs(0.3).setShininess(100).setKt(0.3))));
-                observations.add(new Observation(new Sphere(20, new Point(-50, 0, 0)) //
-                        .setEmission(new Color(java.awt.Color.BLACK)) //
+                observations.add(new Observation(new Sphere(20, new Point(-50, 0, 0)) 
+                        .setEmission(new Color(java.awt.Color.BLACK)) 
                         .setMaterial(new Material().setKd(0.4).setKs(0.3).setShininess(100).setKt(0.3))));
-                observations.add(new Observation(new Sphere(15, new Point(-70, 0, 0)) //
-                     .setEmission(new Color(java.awt.Color.RED)) //
+                observations.add(new Observation(new Sphere(15, new Point(-70, 0, 0)) 
+                     .setEmission(new Color(java.awt.Color.RED)) 
                      .setMaterial(new Material().setKd(0.4).setKs(0.3).setShininess(100).setKt(0.3))));
                 
         kMeansAlgorithm Kmeans = new kMeansAlgorithm();
